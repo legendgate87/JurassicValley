@@ -1,0 +1,551 @@
+.body-content {
+    padding-top: 36px;  /* choose whatever you want here */
+}
+
+#center{
+    margin-left: auto;
+    margin-right: auto;
+    width: 5.5em
+}
+#centerB{
+    margin-left: auto;
+    margin-right: auto;
+    width: 5.5em
+}
+
+.navbarBackground{
+    background-color: #2e3130;
+    border-style:solid;
+    border-color:white;
+    
+    
+}
+
+
+
+.navHead{
+    color: rgb(240, 180, 45) !important;
+      font-family: Jurassic_Park;
+     
+    text-shadow: -1px 0 black, 0 1.5px black, 1px 0 black, 0 -1px black;
+    font-size: 150%;  
+}
+
+.whiteTextOverride
+{
+ color: crimson !important;
+}
+
+.whiteTextToBlack
+{
+ color: black !important;
+}
+
+input{
+    color: black !important;
+}
+
+.progress{
+     
+    /*width: 200px;*/
+}
+
+#playerName{
+    padding: 5px;
+    
+}
+
+#opponent{
+    padding: 5px;
+   
+}
+
+
+.buffs{   
+    display: inline-block;
+   
+}
+
+
+
+
+#column3{
+    text-align:center;
+    margin: 0px 0px 90px 50px;
+    width: 20%;
+    display: inline-block;
+}
+
+#column2{
+    padding: 45px 2px 0px;
+    float:right;
+    
+}
+
+#column1{
+
+    
+    padding: 45px 2px 0px;
+    float:left;
+    
+}
+
+
+.bottom{
+    position: relative;
+    bottom: 200px;
+    width: 200px;
+    height: 100px;
+   
+}
+
+.footer
+ {
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    margin-top: -3em;
+    padding: 10px 10px 10px 10px;
+    width:100%;
+   
+     font-family:'Times New Roman', Times, serif;
+ }
+
+
+
+@font-face {
+    font-family: 'Jurassic_Park';
+    src: url('Jurassic_Park.ttf') format('truetype');
+}
+
+.jurassic {
+    font-family: Jurassic_Park;
+     color: #ffb400;
+    text-shadow: 3px 0 black, 0 1.5px black, 1px 0 black, 0 3px black;
+    font-size: 600%;
+    background-color:#AD1D28;
+    box-shadow: -1px 5px 20px black;
+    text-align:center;
+    padding: 10px 0px 0px 0px;
+  
+}
+
+.topMargin{
+    
+   margin-top: 70px;
+}
+
+.jurassic-xp {
+    font-family: Jurassic_Park;
+     color: #ffb400;
+    text-shadow: -1px 0 black, 0 1.5px black, 1px 0 black, 0 -1px black;
+    font-size: 300%;
+    text-align:center;
+    margin: 0px 0px 0px 0px;
+
+}
+
+.jurassic-small {
+    font-family: Jurassic_Park;
+     color: #ffb400;
+    text-shadow: -1px 0 black, 0 1.5px black, 1px 0 black, 0 -1px black;
+    font-size: 300%;  
+    text-align:center;
+}
+
+.jurassic-small-center {
+    font-family: Jurassic_Park;
+        padding: 20px 10px 10px 10px;
+     color: #ffb400;
+    text-shadow: -1px 0 black, 0 1.5px black, 1px 0 black, 0 -1px black;
+    font-size: 300%;  
+    
+}
+
+.jurassic-small2 {
+    font-family: Jurassic_Park;
+    padding: 10px 10px 0px 10px;
+     color: #ffb400;
+    text-shadow: -1px 0 black, 0 1.5px black, 1px 0 black, 0 -1px black;
+    font-size: 200%;  
+}
+
+.jurassic-small2-head {
+
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+      border-left:solid;
+    border-color:#2e3130;
+    font-family: Jurassic_Park;
+    padding: 5px 50px 5px 15px;
+     color: #ffb400;
+    
+    text-shadow: -1px 0 black, 0 1.5px black, 1px 0 black, 0 -1px black;
+    font-size: 100%;  
+    
+}
+
+.dinopediaContainer{
+    background-color:#AD1D28;
+    -webkit-box-shadow: inset 15px 15px 50px -18px rgba(0,0,0,0.59);
+    
+     box-shadow: inset 21px 21px 3px -18px rgba(0,0,0,0.59);
+    
+     text-align: center;
+    margin: 0px 10px 0px -15px;
+}
+
+.dinopediaContainer2{
+
+    margin: 10px 0px 0px -10px;
+}
+
+.species:hover {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+      border-left:solid;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-right:solid;
+     /*border:solid;*/
+    border-color:#2e3130;
+}
+
+
+.species {
+    text-decoration:underline;
+     /*border:solid;*/
+    border-color:#2e3130;
+}
+
+.modelnameBorders:hover {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+      border-left:solid;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-right:solid;
+     /*border:solid;*/
+    border-color:#2e3130;
+}
+
+.modelnameBorders {
+    display: inline-block;
+    line-height: 0.60em;
+}
+
+.jurassic-small2-dino {
+    
+    -webkit-box-shadow: inset 10px 10px 50px -15px rgba(0,0,0,0.59);    
+     box-shadow: inset 0px 20px 30px -20px rgba(0,0,0,0.59);
+    font-family: Jurassic_Park;
+    padding: 3px 20px 10px 20px;
+     color: #ffb400;
+    text-shadow: -1px 0 black, 0 1.5px black, 1px 0 black, 0 -1px black;
+    font-size: 190%;  
+    
+}
+
+.jurassic-dinopedia {
+    margin: 0px 0px 20px -20px;
+    font-family: Jurassic_Park;
+    
+    text-shadow: -10px 0 black,  1.5px black, 20px black, 0 -1px black;
+    font-size: 200%;  
+}
+
+.jurassic-dinopedia-head {
+    margin: 0px 70px 0px 0px;
+    padding: 10px 10px 0px 10px;
+    text-shadow: -10px 0 black,  1.5px black, 20px black, 0 -1px black;
+    font-family: Jurassic_Park;
+     color: #ffb400;
+     font-size: 300%;  
+}
+
+
+
+
+table th
+    {
+
+    }
+
+.jurassic-small3 {
+    font-family: Jurassic_Park;
+     color: #ffb400;
+    text-shadow: -10px 0 black, 0 1.5px black, 1px 0 black, 0 -1px black;
+    font-size: 100%;  
+}
+
+.jurassic-normal {
+    font-family: Jurassic_Park;
+     color: #ffb400;
+    text-shadow: -1px 0 black, 0 1.5px black, 1px 0 black, 0 -1px black;
+    font-size: 200%;  
+    
+}
+
+#insetbox{
+    
+    font-size: 130%;
+    background-color:white;
+    text-align:center;
+    padding: 0px 0px 0px 0px ;
+    width: 100px;
+    color: black;
+    font-weight: bold;
+    margin:auto;
+
+    -webkit-box-shadow: inset 15px 15px 50px -18px rgba(0,0,0,0.59);
+    
+     box-shadow: inset 21px 21px 3px -18px rgba(0,0,0,0.59);
+    
+}
+
+
+
+
+#insetboxB{
+    
+    font-size: 130%;
+    background-color:white;
+    text-align:center;
+    padding: 0px 0px 0px 0px ;
+    width: 50px;
+    color: black;
+    font-weight: bold;
+
+    -webkit-box-shadow: inset 15px 15px 50px -18px rgba(0,0,0,0.59);
+    
+     box-shadow: inset 21px 21px 3px -18px rgba(0,0,0,0.59);
+    
+}
+
+
+#progress-bar{
+    
+    
+    text-align:center;
+    padding: 0px 0px 0px 0px ;
+    width: 100px;
+    color: black;
+   
+}
+
+#centerNavBar{
+    box-shadow: 0px 7px 30px -3px black;
+    margin:auto;
+    padding: 0px 0px 0px 0px;
+    text-align:center;
+}
+
+
+.centerFoxNavBar{
+    box-shadow: 0px 7px 30px -3px black;
+    padding: 10px 10px 0px 10px;
+     display:inline-block;
+    width: auto;
+    margin: auto;
+    border: 1px solid rgba(0,0,0,0.59);
+    padding: 10px;
+}
+
+.theCarouselStyle{
+    box-shadow: 0px 7px 30px -3px black;
+ }
+
+
+#dinopediaList{
+    box-shadow: 0px 7px 30px -3px black;
+    padding: 5px 0px 5px 40px;
+    background-color:#AD1D28;
+    width: auto;
+ 
+}
+
+#centerNavBarInner{
+      
+    padding: 0px 0px 10px 0px;
+    
+}
+
+#centerNavButtons{
+     box-shadow: -2px 2px 5px 1px rgba(0,0,0,0.59);
+    padding: 5px 10px 5px 10px;
+    margin-left:2px;
+    
+}
+
+
+.centerNavButtons{
+     box-shadow: -2px 2px 5px 1px rgba(0,0,0,0.59);
+  margin: 1px;
+  text-shadow: 1px 0 black, 0 1px black, 1px 0 black, 0 1px black;
+}
+
+
+#centerButtonBattle{
+     box-shadow: -2px 2px 5px 1px rgba(0,0,0,0.59);
+    padding: 0px 15px 0px 15px;
+    margin-left:20px;
+        font-family: Jurassic_Park;
+     color: #ffb400;
+    text-shadow: -1px 0 black, 0 1.5px black, 1px 0 black, 0 -1px black;
+    font-size: 210%;  
+
+
+}
+
+#centerNavbarText{
+    padding: 5px 10px 5px 10px;
+}
+
+#floatRight{
+    float:right;
+    box-shadow: -3px 10px 40px -3px black;
+    padding: 15px 15px 0px 20px;
+    text-align:center
+}
+
+
+#floatLeft{
+    float:left;
+    box-shadow: 3px 5px 40px -3px black;
+    padding: 15px 15px 0px 20px;
+    text-align:center
+}
+
+
+#imgFlip{
+    display: inline-block;
+  -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+
+
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], ng-cloak, x-ng-cloak{
+   display:none;
+}
+
+
+
+.image-example {
+  width: 200px;
+  height: 100px;
+}
+.image-example img {
+  width: 100%;
+  height: auto;
+}
+
+/*<---------------for ng-repeat-------------->*/
+.achievement.ng-enter,
+.achievement.ng-leave{
+    transition: transform 750ms;
+}
+
+.achievement.ng-enter,
+.achievement.ng-leave-ative{
+    transform: translate3d(-100,0,0);
+}
+
+.achievement.ng-enter-active{
+    transform: translate3d(0,0,0);
+}
+
+.dinopedia.ng-enter,
+.dinopedia.ng-leave{
+    transition: transform 750ms;
+}
+
+.dinopedia.ng-enter,
+.dinopedia.ng-leave-ative{
+    transform: translate3d(-100,0,0);
+}
+
+.dinopedia.ng-enter-ative{
+    transform: translate3d(0,0,0);
+}
+/*<---------------------------------------------->*/
+
+
+.sample-show-hide {
+  padding:10px;
+  /*border:1px solid black;
+  background:white;*/
+}
+
+.sample-show-hide {
+  -webkit-transition:all linear 0.6s;
+  transition:all linear 0.6s;
+}
+
+.sample-show-hide.ng-hide {
+  opacity:0;
+}
+
+
+
+.column3-show-hide {
+ padding: 0px 0px 0px 0px ;
+    width: 0%;
+  /*border:1px solid black;
+  background:white;*/
+}
+
+.column3-show-hide {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+  
+}
+
+.column3-show-hide.ng-hide {
+   width: 30%;
+    padding: 0px 0px 0px 0px ;
+  opacity:0;
+  margin:10px 10px 10px 10px;
+}
+
+.achievement{
+    font-size: 250%;
+    background-color:#AD1D28;
+    box-shadow: -1px 5px 20px black;
+    text-align:center;
+    clear: left;
+    float:left
+}
+
+.achievement:nth-child(1):after { content:"\A"; white-space:pre; }
+
+
+.achi-show-hide {
+    display: inline-block;
+    width: 30%;    
+    margin: 0px 0px 0px 40px;
+    opacity:1;
+}
+
+.achi-show-hide {
+    display: inline-block;
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.achi-show-hide.ng-hide {
+    width: 0%;
+    display: inline-block;
+    margin: 0px 0px 0px -100px;
+    opacity:0;
+}
+
+
+.progress-bar {
+    max-width: 100%;
+}

@@ -1,0 +1,88 @@
+﻿@model Foxtrot.Models.DataValuesPopu
+
+@{
+    ViewBag.Title = "Foxtrot";
+}
+
+<div class="jumbotron theCarouselStyle topMargin" ng-controller="dinoController">
+    <div class="row visible-md visible-lg">
+        <div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+            <div class="carousel slide" id="theCarousel" data-interval="3000">
+                <ol class="carousel-indicators">
+                    <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#theCarousel" data-slide-to="1"></li>
+                    <li data-target="#theCarousel" data-slide-to="2"></li>
+                    <li data-target="#theCarousel" data-slide-to="3"></li>
+                </ol>
+
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="~/Content/images/fox01.jpg" alt="1" class="img-responsive" />
+                        <div class="carousel-caption">
+                            <h4></h4>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <img src="~/Content/images/fox02.jpg" alt="2" class="img-responsive" />
+                        <div class="carousel-caption">
+                            <h4></h4>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="~/Content/images/fox03.jpg" alt="3" class="img-responsive" />
+                        <div class="carousel-caption">
+                            <h4></h4>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="~/Content/images/fox04.jpg" alt="4" class="img-responsive" />
+                        <div class="carousel-caption">
+                            <h4></h4>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#theCarousel" class="carousel-control left" data-slide="prev"><span class="icon-prev"></span></a>
+                <a href="#theCarousel" class="carousel-control right" data-slide="next"><span class="icon-next"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-md-4 centerFoxNavBar">
+        <button onclick="simFox();" class="btn btn-success centerNavButtons">Generate</button>
+        <button onclick="timeout();" class="btn btn-success centerNavButtons">Generate Loop</button>
+        <button onclick="buttonClear();  " class="btn btn-primary centerNavButtons" id="SendToDatabase">Reset</button>
+        <button onclick="addRabbits();" class="btn btn-success centerNavButtons">Add Rabbits</button>
+        <button onclick="addFoxes();" class="btn btn-success centerNavButtons">Add Foxes</button>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table tableFox table-striped table-bordered table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Population</th>
+                                <th>Foxes casualties</th>
+                                <th>Rabbits casualties old age</th>
+                                <th>Rabbits eaten</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><p id="out"></p></td>
+                                <td><p id="out2"></p></td>
+                                <td><p id="out3"></p></td>
+                                <td><p id="out4"></p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
