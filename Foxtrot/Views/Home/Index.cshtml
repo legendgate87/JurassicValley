@@ -58,9 +58,9 @@
 
                     <label id="centerNavbarText">Player Dino Select from list</label>
 
-                    <select id="centerNavButtons" ng-disabled="GameNotRunning === true" class="btn btn-primary">
+                    <select id="centerNavButtons" ng-disabled="GameNotRunning === true" class="btn btn-primary"
                             ng-options="idx as valName for (idx, valName) in dinList"
-                            ng-model="playerName" ng-change="toggle(dinList[playerName])"
+                            ng-model="playerName" ng-change="toggle(dinList[playerName])">
 
                         <option value="">Player</option>
                     </select>

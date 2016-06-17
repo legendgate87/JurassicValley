@@ -154,7 +154,7 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
         opponentHealth = opponentHealthArray[0];
         playerHealth = playerHealthArray[0];
 
-        $scope.beta = "Beta";
+
 
         //-----------calls to database-------------------------------------------
 

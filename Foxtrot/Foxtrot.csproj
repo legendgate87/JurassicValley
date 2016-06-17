@@ -320,7 +320,7 @@
     <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
     <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
-    <None Include="Properties\PublishProfiles\JurassicVally - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\JurassicValley - Web Deploy.pubxml" />
     <None Include="Scripts\angular.intellisense.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
