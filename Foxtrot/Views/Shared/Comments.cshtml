@@ -7,16 +7,14 @@
     <form ng-controller="ComController">
         <span class="jurassic-common">Post your Comment</span>
         <form ng-controller="FrmController">
-            <textarea ng-model="Comment" placeholder="Your Comment" class="comentInputBox"></textarea>
+            <textarea ng-model="Comment" placeholder="Your Comment" class="commentInputBox"></textarea>
             <button ng-click='btn_add(Comment)' style='margin-top:10px;'>Post Comment</button>
-            
             <h4 class="jurassic-common">Comments</h4>
+
             <input type="search" ng-model="q" placeholder="filter comment..." aria-label="filter comment" />
             <ul class="example-animate-container">
                 <li class="animate-repeat" ng-repeat="comnt in comment | filter:q as results">
-                    <div class="insetboxComent">
-                        {{comnt}}
-                    </div>
+                    <div class="insetboxComment">{{comnt}}</div>
                      
                 </li>
                 <li class="animate-repeat" ng-if="results.length == 0">
