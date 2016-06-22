@@ -18,22 +18,50 @@ namespace Foxtrot.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateComment( )
+        public async Task<ActionResult> CreateComment(CommentsTable commentsTable)
         {
-
-            try
+            if (ModelState.IsValid)
             {
-                //db..AddOrUpdate();
-                await db.SaveChangesAsync();
+                var dataValue = new CommentsTable
+                {
+                    Id = commentsTable.Id,
+                    Comment = commentsTable.Comment
+                    
+                };
 
-                return View();
+        
+                db.CommentsTable.Add(dataValue);
+
+
+
+                try
+                {
+                    await db.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    return Content(ex.Message);
+                }
+
                 
+                return Content("Done!");
             }
-            catch
+            else
             {
-
-                return View();
+                return Content("Something went wrong!");
             }
+
+        }
+        
+        public JsonResult GetComments()
+        {
+            // List<string> comentsGet;
+
+            var comentsGet = db.CommentsTable.ToList();
+                
+
+            return Json(comentsGet, JsonRequestBehavior.AllowGet);
+
         }
     }
 }

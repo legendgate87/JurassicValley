@@ -1134,8 +1134,6 @@
     <Content Include="Scripts\jQuery\jquery.validate.js" />
     <Content Include="Scripts\jQuery\jquery.validate.min.js" />
     <Content Include="Scripts\JurassicVally\JurassicCore.js" />
-    <Content Include="Scripts\JurassicVally\Services\httpService.js" />
-    <Content Include="Scripts\JurassicVally\Services\JurassicService.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />

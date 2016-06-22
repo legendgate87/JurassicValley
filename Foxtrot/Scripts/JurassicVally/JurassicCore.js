@@ -119,6 +119,7 @@ var bite;
 var heal;
 
 
+
 var buffIsActive;
 
 //-------------MainModule--------------
@@ -128,30 +129,34 @@ var playerApp = angular.module('myModule', ['ngCookies', 'ngRoute', 'ngAnimate']
 playerApp.controller('ComController', ['$scope', '$http',
 
     function ($scope, $http) {
-        $scope.comment = [];
+        //$scope.comment = [];
 
-        $scope.btn_add = function () {
+        $scope.btn_add = function (val) {
 
-            if ($scope.txtcomment != '') {
-                $scope.comment.push($scope.txtcomment);
-                $scope.txtcoment = "";
-
-                  $.ajax({
-        type: "POST",
-        url: "/Tomb/Create02",
-        data: dataToSend,  
-    });
-
+            if ($scope.Comment != '') {
+                
+                var comentValue = { 'Comment': val };
+                $http.post("/Comments/CreateComment", comentValue).then(function (response) {
+                    if (response.data === "Done!") {
+                        $scope.Comment = "";
+                    }
+                }, function (error) {
+                    console.log(error);
+                });
             }
         }
 
-        $scope.remItem = function ($index) {
-            $scope.comment.splice($index, 1);
+        $http.get('/Comments/GetComments' + term).then(
+        successCallBack = function (response) {
+            var remItem = response.data;
+            console.log(response.data)
+            
+            comment.push(remItem);
+            $scop.comment = [];
+
+        });
+
         }
-    }
-
-
-
 ]);
 
 
