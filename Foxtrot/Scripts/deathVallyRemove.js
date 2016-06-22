@@ -293,7 +293,9 @@ function timeout() {
     }, 1000);
 }
 
-
+function pause() {
+    clearTimeout(myTimer);
+}
 
 
 // Manual fox add

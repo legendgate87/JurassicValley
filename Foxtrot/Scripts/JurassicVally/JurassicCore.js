@@ -62,9 +62,8 @@ var dinoDeathCount = 0;
 
 var powerArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-var xpBar =1;
-
-var xpLevelGain;
+var xpBar = 0;
+var xpLevelGain = 0;
 
 var dice = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 var playerDialogArray = ["", "", "", "", "", "", "", "", "", "", "", "", ];
@@ -125,14 +124,35 @@ var buffIsActive;
 //-------------MainModule--------------
 var playerApp = angular.module('myModule', ['ngCookies', 'ngRoute', 'ngAnimate']);
 
-//.config(function ($routeProvider) {
-//    $routeProvider.when('/InGen_Player_Partial',
-//        {
-//            templateUrl: '/InGen/InGen_Player_Partial.cshtml',
-//        controller: 'dinoController'
-//    })
-//});
 
+playerApp.controller('ComController', ['$scope', '$http',
+
+    function ($scope, $http) {
+        $scope.comment = [];
+
+        $scope.btn_add = function () {
+
+            if ($scope.txtcomment != '') {
+                $scope.comment.push($scope.txtcomment);
+                $scope.txtcoment = "";
+
+                  $.ajax({
+        type: "POST",
+        url: "/Tomb/Create02",
+        data: dataToSend,  
+    });
+
+            }
+        }
+
+        $scope.remItem = function ($index) {
+            $scope.comment.splice($index, 1);
+        }
+    }
+
+
+
+]);
 
 
 playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '$timeout',
@@ -140,7 +160,7 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
     function ($scope, $http, $log, $cookies, $timeout, battle) {
 
         levelUp = 1;
-
+       
         popArrays();
         doCalculations();
 
@@ -225,8 +245,7 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
         var successCallBack5 = function (response) {
             //$log.info(response.data[0]);
             dinoReturn = response.data[0];
-            console.log(dinoReturn)
-
+            
             if (dinoReturn == 1) {
                 carnivoreCount++;
 
@@ -262,27 +281,15 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
             var opponent = randDinoGet;
 
             // Setting  cookie
-
             var cookiePut = $cookies.put('playerCookie', playerName);
             var cookieGet = $cookies.get('playerCookie');
 
             var cookiePut2 = $cookies.put('opponentCookie', opponent);
              cookieGet2 = $cookies.get('opponentCookie');
 
-            //console.log("PlayercookiePut in Cookie: ", cookiePut)
-            //console.log("OpponentcookiePut in Cookie: ", cookiePut2)
-
-            //console.log("PlayercookieGet in Cookie: ", cookieGet)
-            //console.log("OpponentcookieGet in Cookie: ", cookieGet2)
-
-
             $http.get('/InGen/GetShapePlayer?playerName=' + cookieGet).then(successCallBack);
             $http.get('/InGen/GetShapeOpponent?opponent=' + cookieGet2).then(successCallBack2);
 
-            //$http.get('/InGen/GetPeriodPlayer?playerName=' + cookieGet).then(successCallBack3);
-            //$http.get('/InGen/GetPeriodOpponent?opponent=' + cookieGet2).then(successCallBack4);
-
-            
 
         }
 
@@ -311,6 +318,7 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
 
 
         $scope.playerName = playerName;
+      
         $scope.opponent = opponent;
 
         $scope.GameNotRunning = GameNotRunning;
@@ -327,8 +335,12 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
 
         $scope.xpMax = xpMax;
         $scope.MaxHP = MaxHP;
-
+    
+  
         $scope.xpBar = xpBar + xpLevelGain;
+        
+
+       
 
         $scope.percentXpbar = ((playerHealth / MaxHP) * 100);
 

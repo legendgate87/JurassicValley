@@ -13,12 +13,7 @@ namespace Foxtrot.Controllers
 
         public ActionResult Index()
         {
-
-
             return View();
-
-
-           
         }
 
     }

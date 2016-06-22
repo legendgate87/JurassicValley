@@ -146,6 +146,17 @@ input{
 
 }
 
+.jurassic-common {
+    font-family: Jurassic_Park;
+     color: #ffb400;
+    text-shadow: -1px 0 black, 0 1.5px black, 1px 0 black, 0 -1px black;
+    font-size: 300%;
+    text-align:left;
+    margin: 0px 0px 0px 0px;
+
+}
+
+
 .jurassic-small {
     font-family: Jurassic_Park;
      color: #ffb400;
@@ -379,10 +390,16 @@ table th
 }
 
 
-.centerNavButtons{
+.centerNavButtons2{
      box-shadow: -2px 2px 5px 1px rgba(0,0,0,0.59);
   margin: 1px;
-  text-shadow: 1px 0 black, 0 1px black, 1px 0 black, 0 1px black;
+color:black;
+font-family:'Comic Sans MS';
+background-color:#ffffff;
+border-color:#356896;
+font-style:oblique;
+font-size:120%;
+
 }
 
 
@@ -449,20 +466,25 @@ table th
 .achievement.ng-enter,
 .achievement.ng-leave{
     transition: transform 750ms;
+    
+
 }
 
 .achievement.ng-enter,
 .achievement.ng-leave-ative{
     transform: translate3d(-100,0,0);
+    height: 0%;
 }
 
 .achievement.ng-enter-active{
     transform: translate3d(0,0,0);
+   
 }
 
 .dinopedia.ng-enter,
 .dinopedia.ng-leave{
     transition: transform 750ms;
+   
 }
 
 .dinopedia.ng-enter,
@@ -519,23 +541,26 @@ table th
     box-shadow: -1px 5px 20px black;
     text-align:center;
     clear: left;
-    float:left
+    float:left;
+   width: 0%;
 }
 
-.achievement:nth-child(1):after { content:"\A"; white-space:pre; }
+.achievement:nth-child(1):after { content:"\A"; white-space:pre; width: 0%;  height: 0%;}
 
 
 .achi-show-hide {
     display: inline-block;
-    width: 30%;    
+ margin: 0px 0px 0px -100px;    
     margin: 0px 0px 0px 40px;
     opacity:1;
+     height: 0%;
 }
 
 .achi-show-hide {
     display: inline-block;
   -webkit-transition:all linear 0.5s;
   transition:all linear 0.5s;
+  width: 30%;
 }
 
 .achi-show-hide.ng-hide {
@@ -543,9 +568,43 @@ table th
     display: inline-block;
     margin: 0px 0px 0px -100px;
     opacity:0;
+     width: 0%;
+      height: 0%;
 }
 
 
 .progress-bar {
     max-width: 100%;
+}
+.imgScale{
+    width: 150px;
+    height: 50px;
+}
+
+.boxShadow{
+    box-shadow: -1px 5px 20px black;
+    padding: 10px 10px 10px 10px;
+    margin: 70px 10px 10px 10px;
+
+}
+
+.aboutFontSize{
+    font-size: 122%;
+ text-shadow: -1px 0 black, 0 2.0px black, 2px 0 black, 0 -0px black;
+}
+
+.lexiconFont{
+    font-size: 130%;
+}
+
+.foxAbout{
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    font-style:oblique;
+    font-size: 120%;
+}
+
+.comments{
+ color: black !important;
+    margin-top: 30px;
 }

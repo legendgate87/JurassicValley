@@ -34,7 +34,7 @@
                     <span class="icon-bar"></span>
                 </button>
 
-         @Html.ActionLink("JurassicValley - Beta", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navHead" })
+         @Html.ActionLink("JurassicValley - Alpha", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navHead" })
 
             </div>
 
@@ -45,6 +45,7 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li >@Html.ActionLink("Dinopedia", "Dinopedia", "InGen")</li>
                     <li>@Html.ActionLink("Fox Population Simulator", "Index", "FoxSim")</li>
+                    <li>@Html.ActionLink("About", "About", "About")</li>
                 </ul>
             </div>
         </div>
@@ -55,6 +56,9 @@
         @RenderBody()
         
         <footer class="footer">
+            @{Html.RenderPartial("Comments"); }
+
+
             <hr />
             <p>&copy; @DateTime.Now.Year -  Stefan Hellhager
         </footer>

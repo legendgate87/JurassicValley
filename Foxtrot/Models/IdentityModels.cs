@@ -28,7 +28,7 @@ namespace Foxtrot.Models
         public DbSet<Characteristics_FK> Characteristics_FK { get; set; }
         public DbSet<Gender_FK> Gender_FK { get; set; }
 
-        
+        public DbSet<CommentsTable> CommentsTable { get; set; }
         public DbSet<DataValuesPopu> dataValuesPopu { get; set; }
         public DbSet<Dinopedia> Dinopedia { get; set; }
        
