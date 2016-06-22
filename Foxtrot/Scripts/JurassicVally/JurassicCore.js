@@ -118,7 +118,7 @@ var scrat;
 var bite;
 var heal;
 
-
+var comment = [];
 
 var buffIsActive;
 
@@ -140,20 +140,25 @@ playerApp.controller('ComController', ['$scope', '$http',
                     if (response.data === "Done!") {
                         $scope.Comment = "";
                     }
+
                 }, function (error) {
                     console.log(error);
                 });
+                $http.get('/Comments/GetComments').then(successCallBack);
             }
         }
 
-        $http.get('/Comments/GetComments' + term).then(
+        
+        $http.get('/Comments/GetComments').then(
         successCallBack = function (response) {
             var remItem = response.data;
-            console.log(response.data)
+           
             
-            comment.push(remItem);
-            $scop.comment = [];
+            $.each(remItem, function (index, value) {
+                comment.push(value.Comment);
+            });
 
+            $scope.comment = comment;
         });
 
         }
