@@ -1,2 +1,2 @@
 # JurassicValley
-Html page,population sumulation, dinosaurgame, javascript,angular,mvc..  etc
+Html page,population simulation, dinosaurgame, javascript,angular,mvc..  etc
