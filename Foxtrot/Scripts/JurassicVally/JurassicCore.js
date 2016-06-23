@@ -123,14 +123,27 @@ var comment = [];
 var buffIsActive;
 
 //-------------MainModule--------------
-var playerApp = angular.module('myModule', ['ngCookies', 'ngRoute', 'ngAnimate']);
+var playerApp = angular.module('myModule', ['ngCookies', 'ngRoute', 'ngAnimate', 'angulike']);
 
+playerApp.run([
+      '$rootScope', function ($rootScope) {
+          $rootScope.facebookAppId = '[1106514932771266]'; // set your facebook app id here
+      }
+]);
 
 playerApp.controller('ComController', ['$scope', '$http',
+  
 
     function ($scope, $http) {
         //$scope.comment = [];
 
+        $scope.myModel = {
+            Url: 'http://jasonwatmore.com/post/2014/08/01/AngularJS-directives-for-social-sharing-buttons-Facebook-Like-GooglePlus-Twitter-and-Pinterest.aspx',
+            Name: "JurassicValley",
+            ImageUrl: 'http://www.jasonwatmore.com/pics/jason.jpg'
+        };
+    
+    
         $scope.btn_add = function (val) {
 
             if ($scope.Comment != '') {
@@ -144,13 +157,13 @@ playerApp.controller('ComController', ['$scope', '$http',
                 }, function (error) {
                     console.log(error);
                 });
-                $http.get('/Comments/GetComments').then(successCallBack);
+                $http.get('/Comments/GetComments').then(successCallBackComments);
             }
         }
 
         
         $http.get('/Comments/GetComments').then(
-        successCallBack = function (response) {
+        successCallBackComments = function (response) {
             var remItem = response.data;
            
             

@@ -370,6 +370,7 @@
     <Content Include="Scripts\AngularScripts\angular-sanitize.min.js.map" />
     <Content Include="Scripts\AngularScripts\angular-touch.min.js.map" />
     <Content Include="Scripts\AngularScripts\angular.min.js.map" />
+    <Content Include="Scripts\angulike.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\Bootstrap\bootstrap.js" />
     <Content Include="Scripts\Bootstrap\bootstrap.min.js" />
