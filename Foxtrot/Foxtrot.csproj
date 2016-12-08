@@ -217,6 +217,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\DataValuesPopu.cs" />
     <Compile Include="Models\DinoCreation.cs" />
     <Compile Include="Models\Dinopedia.cs" />
