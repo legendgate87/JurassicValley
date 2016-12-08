@@ -91,8 +91,8 @@ var Microsoft;
                     throw message;
                 }
                 else {
-                    if (typeof (message) !== "undefined" && !!message) {
-                        if (typeof (message.message) !== "undefined") {
+                    if (typeof (message) !=== "undefined" && !!message) {
+                        if (typeof (message.message) !=== "undefined") {
                             message.message = this.AiNonUserActionablePrefix + message.message;
                             this.warnToConsole(message.message);
                             this.logInternalMessage(severity, message);
@@ -105,8 +105,8 @@ var Microsoft;
                     throw message;
                 }
                 else {
-                    if (typeof (message) !== "undefined" && !!message) {
-                        if (typeof (message.message) !== "undefined") {
+                    if (typeof (message) !=== "undefined" && !!message) {
+                        if (typeof (message.message) !=== "undefined") {
                             message.message = this.AiUserActionablePrefix + message.message;
                             this.warnToConsole(message.message);
                             this.logInternalMessage(severity, message);
@@ -115,11 +115,11 @@ var Microsoft;
                 }
             };
             _InternalLogging.warnToConsole = function (message) {
-                if (typeof console !== "undefined" && !!console) {
-                    if (typeof console.warn === "function") {
+                if (typeof console !=== "undefined" && !!console) {
+                    if (typeof console.warn ==== "function") {
                         console.warn(message);
                     }
-                    else if (typeof console.log === "function") {
+                    else if (typeof console.log ==== "function") {
                         console.log(message);
                     }
                 }
@@ -131,7 +131,7 @@ var Microsoft;
                 if (ApplicationInsights.Util.canUseSessionStorage()) {
                     var sessionStorageKeys = ApplicationInsights.Util.getSessionStorageKeys();
                     for (var i = 0; i < sessionStorageKeys.length; i++) {
-                        if (sessionStorageKeys[i].indexOf(_InternalLogging.AIInternalMessagePrefix) === 0) {
+                        if (sessionStorageKeys[i].indexOf(_InternalLogging.AIInternalMessagePrefix) ==== 0) {
                             ApplicationInsights.Util.removeSessionStorage(sessionStorageKeys[i]);
                         }
                     }
@@ -159,11 +159,11 @@ var Microsoft;
                     }
                 }
                 if (logMessage) {
-                    if (this.verboseLogging() || severity === LoggingSeverity.CRITICAL) {
+                    if (this.verboseLogging() || severity ==== LoggingSeverity.CRITICAL) {
                         this.queue.push(message);
                         this._messageCount++;
                     }
-                    if (this._messageCount == this.MAX_INTERNAL_MESSAGE_LIMIT) {
+                    if (this._messageCount === this.MAX_INTERNAL_MESSAGE_LIMIT) {
                         var throttleLimitMessage = "Internal events throttle limit per PageView reached for this app.";
                         var throttleMessage = new _InternalLogMessage(_InternalMessageId.NONUSRACT_MessageLimitPerPVExceeded, throttleLimitMessage);
                         this.queue.push(throttleMessage);
@@ -209,7 +209,7 @@ var Microsoft;
                 var uid;
                 try {
                     uid = new Date;
-                    storage = storageType === StorageType.LocalStorage ? window.localStorage : window.sessionStorage;
+                    storage = storageType ==== StorageType.LocalStorage ? window.localStorage : window.sessionStorage;
                     storage.setItem(uid, uid);
                     fail = storage.getItem(uid) != uid;
                     storage.removeItem(uid);
@@ -227,7 +227,7 @@ var Microsoft;
             };
             Util.getStorage = function (name) {
                 var storage = Util._getLocalStorageObject();
-                if (storage !== null) {
+                if (storage !=== null) {
                     try {
                         return storage.getItem(name);
                     }
@@ -240,7 +240,7 @@ var Microsoft;
             };
             Util.setStorage = function (name, data) {
                 var storage = Util._getLocalStorageObject();
-                if (storage !== null) {
+                if (storage !=== null) {
                     try {
                         storage.setItem(name, data);
                         return true;
@@ -254,7 +254,7 @@ var Microsoft;
             };
             Util.removeStorage = function (name) {
                 var storage = Util._getLocalStorageObject();
-                if (storage !== null) {
+                if (storage !=== null) {
                     try {
                         storage.removeItem(name);
                         return true;
@@ -283,7 +283,7 @@ var Microsoft;
             };
             Util.getSessionStorage = function (name) {
                 var storage = Util._getSessionStorageObject();
-                if (storage !== null) {
+                if (storage !=== null) {
                     try {
                         return storage.getItem(name);
                     }
@@ -296,7 +296,7 @@ var Microsoft;
             };
             Util.setSessionStorage = function (name, data) {
                 var storage = Util._getSessionStorageObject();
-                if (storage !== null) {
+                if (storage !=== null) {
                     try {
                         storage.setItem(name, data);
                         return true;
@@ -310,7 +310,7 @@ var Microsoft;
             };
             Util.removeSessionStorage = function (name) {
                 var storage = Util._getSessionStorageObject();
-                if (storage !== null) {
+                if (storage !=== null) {
                     try {
                         storage.removeItem(name);
                         return true;
@@ -333,7 +333,7 @@ var Microsoft;
                 if (!str) {
                     return false;
                 }
-                return str.toString().toLowerCase() === "true";
+                return str.toString().toLowerCase() ==== "true";
             };
             Util.getCookie = function (name) {
                 var value = "";
@@ -343,7 +343,7 @@ var Microsoft;
                     for (var i = 0; i < cookies.length; i++) {
                         var cookie = cookies[i];
                         cookie = Util.trim(cookie);
-                        if (cookie && cookie.indexOf(cookieName) === 0) {
+                        if (cookie && cookie.indexOf(cookieName) ==== 0) {
                             value = cookie.substring(cookieName.length, cookies[i].length);
                             break;
                         }
@@ -355,7 +355,7 @@ var Microsoft;
                 Util.document.cookie = name + "=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
             };
             Util.trim = function (str) {
-                if (typeof str !== "string")
+                if (typeof str !=== "string")
                     return str;
                 return str.replace(/^\s+|\s+$/g, "");
             };
@@ -371,13 +371,13 @@ var Microsoft;
                 return result;
             };
             Util.isArray = function (obj) {
-                return Object.prototype.toString.call(obj) === "[object Array]";
+                return Object.prototype.toString.call(obj) ==== "[object Array]";
             };
             Util.isError = function (obj) {
-                return Object.prototype.toString.call(obj) === "[object Error]";
+                return Object.prototype.toString.call(obj) ==== "[object Error]";
             };
             Util.isDate = function (obj) {
-                return Object.prototype.toString.call(obj) === "[object Date]";
+                return Object.prototype.toString.call(obj) ==== "[object Date]";
             };
             Util.toISOStringForIE8 = function (date) {
                 if (Util.isDate(date)) {
@@ -387,7 +387,7 @@ var Microsoft;
                     else {
                         function pad(number) {
                             var r = String(number);
-                            if (r.length === 1) {
+                            if (r.length ==== 1) {
                                 r = "0" + r;
                             }
                             return r;
@@ -404,7 +404,7 @@ var Microsoft;
                 }
             };
             Util.getIEVersion = function (userAgentStr) {
-                if (userAgentStr === void 0) { userAgentStr = null; }
+                if (userAgentStr ==== void 0) { userAgentStr = null; }
                 var myNav = userAgentStr ? userAgentStr.toLowerCase() : navigator.userAgent.toLowerCase();
                 return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : null;
             };
@@ -416,32 +416,32 @@ var Microsoft;
                 var sec = "" + Math.floor(totalms / 1000) % 60;
                 var min = "" + Math.floor(totalms / (1000 * 60)) % 60;
                 var hour = "" + Math.floor(totalms / (1000 * 60 * 60)) % 24;
-                ms = ms.length === 1 ? "00" + ms : ms.length === 2 ? "0" + ms : ms;
+                ms = ms.length ==== 1 ? "00" + ms : ms.length ==== 2 ? "0" + ms : ms;
                 sec = sec.length < 2 ? "0" + sec : sec;
                 min = min.length < 2 ? "0" + min : min;
                 hour = hour.length < 2 ? "0" + hour : hour;
                 return hour + ":" + min + ":" + sec + "." + ms;
             };
             Util.isCrossOriginError = function (message, url, lineNumber, columnNumber, error) {
-                return (message === "Script error." || message === "Script error") && error === null;
+                return (message ==== "Script error." || message ==== "Script error") && error ==== null;
             };
             Util.dump = function (object) {
                 var objectTypeDump = Object.prototype.toString.call(object);
                 var propertyValueDump = JSON.stringify(object);
-                if (objectTypeDump === "[object Error]") {
+                if (objectTypeDump ==== "[object Error]") {
                     propertyValueDump = "{ stack: '" + object.stack + "', message: '" + object.message + "', name: '" + object.name + "'";
                 }
                 return objectTypeDump + propertyValueDump;
             };
             Util.getExceptionName = function (object) {
                 var objectTypeDump = Object.prototype.toString.call(object);
-                if (objectTypeDump === "[object Error]") {
+                if (objectTypeDump ==== "[object Error]") {
                     return object.name;
                 }
                 return "";
             };
             Util.addEventHandler = function (eventName, callback) {
-                if (!window || typeof eventName !== 'string' || typeof callback !== 'function') {
+                if (!window || typeof eventName !=== 'string' || typeof callback !=== 'function') {
                     return false;
                 }
                 var verbEventName = 'on' + eventName;
@@ -456,7 +456,7 @@ var Microsoft;
                 }
                 return true;
             };
-            Util.document = typeof document !== "undefined" ? document : {};
+            Util.document = typeof document !=== "undefined" ? document : {};
             Util.NotSpecified = "not_specified";
             return Util;
         })();
@@ -487,7 +487,7 @@ var Microsoft;
                 }
                 return result;
             };
-            UrlHelper.document = typeof document !== "undefined" ? document : {};
+            UrlHelper.document = typeof document !=== "undefined" ? document : {};
             return UrlHelper;
         })();
         ApplicationInsights.UrlHelper = UrlHelper;
@@ -504,7 +504,7 @@ var Microsoft;
             function extensions() {
             }
             extensions.IsNullOrUndefined = function (obj) {
-                return typeof (obj) === "undefined" || obj === null;
+                return typeof (obj) ==== "undefined" || obj ==== null;
             };
             return extensions;
         })();
@@ -542,7 +542,7 @@ var Microsoft;
                     };
             dateTime.GetDuration = function (start, end) {
                 var result = null;
-                if (start !== 0 && end !== 0 && !extensions.IsNullOrUndefined(start) && !extensions.IsNullOrUndefined(end)) {
+                if (start !=== 0 && end !=== 0 && !extensions.IsNullOrUndefined(start) && !extensions.IsNullOrUndefined(end)) {
                     result = end - start;
                 }
                 return result;
@@ -672,8 +672,8 @@ var Microsoft;
             };
             AjaxMonitor.prototype.isMonitoredInstance = function (xhr, excludeAjaxDataValidation) {
                 return this.initialized
-                    && (excludeAjaxDataValidation === true || !ApplicationInsights.extensions.IsNullOrUndefined(xhr.ajaxData))
-                    && xhr[AjaxMonitor.DisabledPropertyName] !== true;
+                    && (excludeAjaxDataValidation ==== true || !ApplicationInsights.extensions.IsNullOrUndefined(xhr.ajaxData))
+                    && xhr[AjaxMonitor.DisabledPropertyName] !=== true;
             };
             AjaxMonitor.prototype.supportsMonitoring = function () {
                 var result = false;
@@ -742,7 +742,7 @@ var Microsoft;
             };
             AjaxMonitor.prototype.sendHandler = function (xhr, content) {
                 xhr.ajaxData.requestSentTime = ApplicationInsights.dateTime.Now();
-                if (!this.appInsights.config.disableCorrelationHeaders && (ApplicationInsights.UrlHelper.parseUrl(xhr.ajaxData.getAbsoluteUrl()).host == this.currentWindowHost)) {
+                if (!this.appInsights.config.disableCorrelationHeaders && (ApplicationInsights.UrlHelper.parseUrl(xhr.ajaxData.getAbsoluteUrl()).host === this.currentWindowHost)) {
                     xhr.setRequestHeader("x-ms-request-id", xhr.ajaxData.id);
                 }
                 xhr.ajaxData.xhrMonitoringState.sendDone = true;
@@ -771,14 +771,14 @@ var Microsoft;
                 xhr.ajaxData.xhrMonitoringState.onreadystatechangeCallbackAttached = ApplicationInsights.EventHelper.AttachEvent(xhr, "readystatechange", function () {
                     try {
                         if (ajaxMonitorInstance.isMonitoredInstance(xhr)) {
-                            if (xhr.readyState === 4) {
+                            if (xhr.readyState ==== 4) {
                                 ajaxMonitorInstance.onAjaxComplete(xhr);
                             }
                         }
                     }
                     catch (e) {
                         var exceptionText = Microsoft.ApplicationInsights.Util.dump(e);
-                        if (!exceptionText || exceptionText.toLowerCase().indexOf("c00c023f") == -1) {
+                        if (!exceptionText || exceptionText.toLowerCase().indexOf("c00c023f") === -1) {
                             ApplicationInsights._InternalLogging.throwInternalNonUserActionable(ApplicationInsights.LoggingSeverity.CRITICAL, new ApplicationInsights._InternalLogMessage(ApplicationInsights._InternalMessageId.NONUSRACT_FailedMonitorAjaxRSC, "Failed to monitor XMLHttpRequest 'readystatechange' event handler, monitoring data for this ajax call may be incorrect.", {
                                 ajaxDiagnosticsMessage: AjaxMonitor.getFailedAjaxDiagnosticsMessage(xhr),
                                 exception: Microsoft.ApplicationInsights.Util.dump(e)
@@ -822,7 +822,7 @@ var Microsoft;
                 return score * 100;
             };
             HashCodeScoreGenerator.prototype.getHashCode = function (input) {
-                if (input == "") {
+                if (input === "") {
                     return 0;
                 }
                 while (input.length < HashCodeScoreGenerator.MIN_INPUT_LENGTH) {
@@ -876,13 +876,13 @@ var Microsoft;
                     return output;
                 }
                 if (!source.aiDataContract) {
-                    if (name === "measurements") {
+                    if (name ==== "measurements") {
                         output = Serializer._serializeStringMap(source, "number", name);
                     }
-                    else if (name === "properties") {
+                    else if (name ==== "properties") {
                         output = Serializer._serializeStringMap(source, "string", name);
                     }
-                    else if (name === "tags") {
+                    else if (name ==== "tags") {
                         output = Serializer._serializeStringMap(source, "string", name);
                     }
                     else if (ApplicationInsights.Util.isArray(source)) {
@@ -895,7 +895,7 @@ var Microsoft;
                             output = source;
                         }
                         catch (e) {
-                            ApplicationInsights._InternalLogging.throwInternalUserActionable(ApplicationInsights.LoggingSeverity.CRITICAL, e && typeof e.toString === 'function' ? e.toString() : "Error serializing object");
+                            ApplicationInsights._InternalLogging.throwInternalUserActionable(ApplicationInsights.LoggingSeverity.CRITICAL, e && typeof e.toString ==== 'function' ? e.toString() : "Error serializing object");
                         }
                     }
                     return output;
@@ -903,11 +903,11 @@ var Microsoft;
                 source[circularReferenceCheck] = true;
                 for (var field in source.aiDataContract) {
                     var contract = source.aiDataContract[field];
-                    var isRequired = (typeof contract === "function") ? (contract() & FieldType.Required) : (contract & FieldType.Required);
-                    var isHidden = (typeof contract === "function") ? (contract() & FieldType.Hidden) : (contract & FieldType.Hidden);
+                    var isRequired = (typeof contract ==== "function") ? (contract() & FieldType.Required) : (contract & FieldType.Required);
+                    var isHidden = (typeof contract ==== "function") ? (contract() & FieldType.Hidden) : (contract & FieldType.Hidden);
                     var isArray = contract & FieldType.Array;
-                    var isPresent = source[field] !== undefined;
-                    var isObject = typeof source[field] === "object" && source[field] !== null;
+                    var isPresent = source[field] !=== undefined;
+                    var isObject = typeof source[field] ==== "object" && source[field] !=== null;
                     if (isRequired && !isPresent && !isArray) {
                         ApplicationInsights._InternalLogging.throwInternalNonUserActionable(ApplicationInsights.LoggingSeverity.CRITICAL, new ApplicationInsights._InternalLogMessage(ApplicationInsights._InternalMessageId.NONUSRACT_MissingRequiredFieldSpecification, "Missing required field specification. The field is required but not present on source", { field: field, name: name }));
                         continue;
@@ -927,7 +927,7 @@ var Microsoft;
                     else {
                         value = source[field];
                     }
-                    if (value !== undefined) {
+                    if (value !=== undefined) {
                         output[field] = value;
                     }
                 }
@@ -957,11 +957,11 @@ var Microsoft;
                     output = {};
                     for (var field in map) {
                         var value = map[field];
-                        if (expectedType === "string") {
-                            if (value === undefined) {
+                        if (expectedType ==== "string") {
+                            if (value ==== undefined) {
                                 output[field] = "undefined";
                             }
-                            else if (value === null) {
+                            else if (value ==== null) {
                                 output[field] = "null";
                             }
                             else if (!value.toString) {
@@ -971,11 +971,11 @@ var Microsoft;
                                 output[field] = value.toString();
                             }
                         }
-                        else if (expectedType === "number") {
-                            if (value === undefined) {
+                        else if (expectedType ==== "number") {
+                            if (value ==== undefined) {
                                 output[field] = "undefined";
                             }
-                            else if (value === null) {
+                            else if (value ==== null) {
                                 output[field] = "null";
                             }
                             else {
@@ -1062,7 +1062,7 @@ var Microsoft;
                             iKey: ApplicationInsights.FieldType.Required,
                             name: ApplicationInsights.FieldType.Required,
                             sampleRate: function () {
-                                return (_this.sampleRate == 100) ? ApplicationInsights.FieldType.Hidden : ApplicationInsights.FieldType.Required;
+                                return (_this.sampleRate === 100) ? ApplicationInsights.FieldType.Hidden : ApplicationInsights.FieldType.Required;
                             },
                             tags: ApplicationInsights.FieldType.Required,
                             data: ApplicationInsights.FieldType.Required
@@ -1306,7 +1306,7 @@ var Microsoft;
                     this.samplingScoreGenerator = new ApplicationInsights.SamplingScoreGenerator();
                 }
                 Sample.prototype.isSampledIn = function (envelope) {
-                    if (this.sampleRate == 100)
+                    if (this.sampleRate === 100)
                         return true;
                     var score = this.samplingScoreGenerator.getSamplingScore(envelope);
                     return score < this.sampleRate;
@@ -1346,10 +1346,10 @@ var Microsoft;
                     if (!config) {
                         config = {};
                     }
-                    if (!(typeof config.sessionExpirationMs === "function")) {
+                    if (!(typeof config.sessionExpirationMs ==== "function")) {
                         config.sessionExpirationMs = function () { return _SessionManager.acquisitionSpan; };
                     }
-                    if (!(typeof config.sessionRenewalMs === "function")) {
+                    if (!(typeof config.sessionRenewalMs ==== "function")) {
                         config.sessionRenewalMs = function () { return _SessionManager.renewalSpan; };
                     }
                     this.config = config;
@@ -1376,7 +1376,7 @@ var Microsoft;
                 };
                 _SessionManager.prototype.initializeAutomaticSession = function () {
                     var cookie = ApplicationInsights.Util.getCookie('ai_session');
-                    if (cookie && typeof cookie.split === "function") {
+                    if (cookie && typeof cookie.split ==== "function") {
                         this.initializeAutomaticSessionWithData(cookie);
                     }
                     else {
@@ -1410,7 +1410,7 @@ var Microsoft;
                     catch (e) {
                         ApplicationInsights._InternalLogging.throwInternalNonUserActionable(ApplicationInsights.LoggingSeverity.CRITICAL, new ApplicationInsights._InternalLogMessage(ApplicationInsights._InternalMessageId.NONUSRACT_ErrorParsingAISessionCookie, "Error parsing ai_session cookie, session will be reset: " + ApplicationInsights.Util.getExceptionName(e), { exception: ApplicationInsights.Util.dump(e) }));
                     }
-                    if (this.automaticSession.renewalDate == 0) {
+                    if (this.automaticSession.renewalDate === 0) {
                         ApplicationInsights._InternalLogging.throwInternalNonUserActionable(ApplicationInsights.LoggingSeverity.WARNING, new ApplicationInsights._InternalLogMessage(ApplicationInsights._InternalMessageId.NONUSRACT_SessionRenewalDateIsZero, "AI session renewal date is 0, session will be reset."));
                     }
                 };
@@ -1512,7 +1512,7 @@ var Microsoft;
                     ApplicationInsights.Util.deleteCookie(User.authUserCookieName);
                 };
                 User.prototype.validateUserInput = function (id) {
-                    if (typeof id !== 'string' ||
+                    if (typeof id !=== 'string' ||
                         !id ||
                         id.match(/,|;|=| |\|/)) {
                         return false;
@@ -1651,7 +1651,7 @@ var Microsoft;
                     if ("withCredentials" in testXhr) {
                         this._sender = this._xhrSender;
                     }
-                    else if (typeof XDomainRequest !== "undefined") {
+                    else if (typeof XDomainRequest !=== "undefined") {
                         this._sender = this._xdrSender;
                     }
                 }
@@ -1701,7 +1701,7 @@ var Microsoft;
             };
             Sender.prototype.triggerSend = function (async) {
                 var isAsync = true;
-                if (typeof async === 'boolean') {
+                if (typeof async ==== 'boolean') {
                     isAsync = async;
                 }
                 try {
@@ -1741,8 +1741,8 @@ var Microsoft;
                 xdr.send(payload);
             };
             Sender._xhrReadyStateChange = function (xhr, payload, countOfItemsInPayload) {
-                if (xhr.readyState === 4) {
-                    if ((xhr.status < 200 || xhr.status >= 300) && xhr.status !== 0) {
+                if (xhr.readyState ==== 4) {
+                    if ((xhr.status < 200 || xhr.status >= 300) && xhr.status !=== 0) {
                         Sender._onError(payload, xhr.responseText || xhr.response || "");
                     }
                     else {
@@ -1751,7 +1751,7 @@ var Microsoft;
                 }
             };
             Sender._xdrOnLoad = function (xdr, payload) {
-                if (xdr && (xdr.responseText + "" === "200" || xdr.responseText === "")) {
+                if (xdr && (xdr.responseText + "" ==== "200" || xdr.responseText ==== "")) {
                     Sender._onSuccess(payload, 0);
                 }
                 else {
@@ -1845,10 +1845,10 @@ var Microsoft;
                     DataSanitizer.sanitizeKeyAndAddUniqueness = function (key, map) {
                         var origLength = key.length;
                         var field = DataSanitizer.sanitizeKey(key);
-                        if (field.length !== origLength) {
+                        if (field.length !=== origLength) {
                             var i = 0;
                             var uniqueField = field;
-                            while (map[uniqueField] !== undefined) {
+                            while (map[uniqueField] !=== undefined) {
                                 i++;
                                 uniqueField = field.substring(0, DataSanitizer.MAX_NAME_LENGTH - 3) + DataSanitizer.padNumber(i);
                             }
@@ -2143,7 +2143,7 @@ var Microsoft;
                 }
                 _ExceptionDetails.prototype.parseStack = function (stack) {
                     var parsedStack = undefined;
-                    if (typeof stack === "string") {
+                    if (typeof stack ==== "string") {
                         var frames = stack.split('\n');
                         parsedStack = [];
                         var level = 0;
@@ -2308,8 +2308,8 @@ var Microsoft;
                     };
                     var dataPoint = new Microsoft.ApplicationInsights.Telemetry.Common.DataPoint();
                     dataPoint.count = count > 0 ? count : undefined;
-                    dataPoint.max = isNaN(max) || max === null ? undefined : max;
-                    dataPoint.min = isNaN(min) || min === null ? undefined : min;
+                    dataPoint.max = isNaN(max) || max ==== null ? undefined : max;
+                    dataPoint.min = isNaN(min) || min ==== null ? undefined : min;
                     dataPoint.name = Telemetry.Common.DataSanitizer.sanitizeString(name);
                     dataPoint.value = value;
                     this.metrics = [dataPoint];
@@ -2427,7 +2427,7 @@ var Microsoft;
                         var request = PageViewPerformance.getDuration(timing.requestStart, timing.responseStart);
                         var response = PageViewPerformance.getDuration(timing.responseStart, timing.responseEnd);
                         var dom = PageViewPerformance.getDuration(timing.responseEnd, timing.loadEventEnd);
-                        if (total == 0) {
+                        if (total === 0) {
                             ApplicationInsights._InternalLogging.throwInternalNonUserActionable(ApplicationInsights.LoggingSeverity.WARNING, new ApplicationInsights._InternalLogMessage(ApplicationInsights._InternalMessageId.NONUSRACT_ErrorPVCalc, "error calculating page view performance.", { total: total, network: network, request: request, response: response, dom: dom }));
                         }
                         else if (total < Math.floor(network) + Math.floor(request) + Math.floor(response) + Math.floor(dom)) {
@@ -2507,7 +2507,7 @@ var Microsoft;
             function TelemetryContext(config) {
                 this._config = config;
                 this._sender = new ApplicationInsights.Sender(config);
-                if (typeof window !== 'undefined') {
+                if (typeof window !=== 'undefined') {
                     this._sessionManager = new ApplicationInsights.Context._SessionManager(config);
                     this.application = new ApplicationInsights.Context.Application();
                     this.device = new ApplicationInsights.Context.Device();
@@ -2528,11 +2528,11 @@ var Microsoft;
                     ApplicationInsights._InternalLogging.throwInternalUserActionable(ApplicationInsights.LoggingSeverity.CRITICAL, new ApplicationInsights._InternalLogMessage(ApplicationInsights._InternalMessageId.USRACT_TrackArgumentsNotSpecified, "cannot call .track() with a null or undefined argument"));
                 }
                 else {
-                    if (envelope.name === ApplicationInsights.Telemetry.PageView.envelopeType) {
+                    if (envelope.name ==== ApplicationInsights.Telemetry.PageView.envelopeType) {
                         ApplicationInsights._InternalLogging.resetInternalMessageCount();
                     }
                     if (this.session) {
-                        if (typeof this.session.id !== "string") {
+                        if (typeof this.session.id !=== "string") {
                             this._sessionManager.update();
                         }
                     }
@@ -2542,7 +2542,7 @@ var Microsoft;
             };
             TelemetryContext.prototype._track = function (envelope) {
                 if (this.session) {
-                    if (typeof this.session.id === "string") {
+                    if (typeof this.session.id ==== "string") {
                         this._applySessionContext(envelope, this.session);
                     }
                     else {
@@ -2564,7 +2564,7 @@ var Microsoft;
                     for (var i = 0; i < telemetryInitializersCount; ++i) {
                         var telemetryInitializer = this.telemetryInitializers[i];
                         if (telemetryInitializer) {
-                            if (telemetryInitializer.apply(null, [envelope]) === false) {
+                            if (telemetryInitializer.apply(null, [envelope]) ==== false) {
                                 doNotSendItem = true;
                                 break;
                             }
@@ -2576,7 +2576,7 @@ var Microsoft;
                     ApplicationInsights._InternalLogging.throwInternalUserActionable(ApplicationInsights.LoggingSeverity.CRITICAL, new ApplicationInsights._InternalLogMessage(ApplicationInsights._InternalMessageId.USRACT_TelemetryInitializerFailed, "One of telemetry initializers failed, telemetry item will not be sent: " + ApplicationInsights.Util.getExceptionName(e), { exception: ApplicationInsights.Util.dump(e) }));
                 }
                 if (!doNotSendItem) {
-                    if (envelope.name === ApplicationInsights.Telemetry.Metric.envelopeType ||
+                    if (envelope.name ==== ApplicationInsights.Telemetry.Metric.envelopeType ||
                         this.sample.isSampledIn(envelope)) {
                         var iKeyNoDashes = this._config.instrumentationKey().replace(/-/g, "");
                         envelope.name = envelope.name.replace("{0}", iKeyNoDashes);
@@ -2591,10 +2591,10 @@ var Microsoft;
             TelemetryContext.prototype._applyApplicationContext = function (envelope, appContext) {
                 if (appContext) {
                     var tagKeys = new AI.ContextTagKeys();
-                    if (typeof appContext.ver === "string") {
+                    if (typeof appContext.ver ==== "string") {
                         envelope.tags[tagKeys.applicationVersion] = appContext.ver;
                     }
-                    if (typeof appContext.build === "string") {
+                    if (typeof appContext.build ==== "string") {
                         envelope.tags[tagKeys.applicationBuild] = appContext.build;
                     }
                 }
@@ -2602,37 +2602,37 @@ var Microsoft;
             TelemetryContext.prototype._applyDeviceContext = function (envelope, deviceContext) {
                 var tagKeys = new AI.ContextTagKeys();
                 if (deviceContext) {
-                    if (typeof deviceContext.id === "string") {
+                    if (typeof deviceContext.id ==== "string") {
                         envelope.tags[tagKeys.deviceId] = deviceContext.id;
                     }
-                    if (typeof deviceContext.ip === "string") {
+                    if (typeof deviceContext.ip ==== "string") {
                         envelope.tags[tagKeys.deviceIp] = deviceContext.ip;
                     }
-                    if (typeof deviceContext.language === "string") {
+                    if (typeof deviceContext.language ==== "string") {
                         envelope.tags[tagKeys.deviceLanguage] = deviceContext.language;
                     }
-                    if (typeof deviceContext.locale === "string") {
+                    if (typeof deviceContext.locale ==== "string") {
                         envelope.tags[tagKeys.deviceLocale] = deviceContext.locale;
                     }
-                    if (typeof deviceContext.model === "string") {
+                    if (typeof deviceContext.model ==== "string") {
                         envelope.tags[tagKeys.deviceModel] = deviceContext.model;
                     }
-                    if (typeof deviceContext.network !== "undefined") {
+                    if (typeof deviceContext.network !=== "undefined") {
                         envelope.tags[tagKeys.deviceNetwork] = deviceContext.network;
                     }
-                    if (typeof deviceContext.oemName === "string") {
+                    if (typeof deviceContext.oemName ==== "string") {
                         envelope.tags[tagKeys.deviceOEMName] = deviceContext.oemName;
                     }
-                    if (typeof deviceContext.os === "string") {
+                    if (typeof deviceContext.os ==== "string") {
                         envelope.tags[tagKeys.deviceOS] = deviceContext.os;
                     }
-                    if (typeof deviceContext.osversion === "string") {
+                    if (typeof deviceContext.osversion ==== "string") {
                         envelope.tags[tagKeys.deviceOSVersion] = deviceContext.osversion;
                     }
-                    if (typeof deviceContext.resolution === "string") {
+                    if (typeof deviceContext.resolution ==== "string") {
                         envelope.tags[tagKeys.deviceScreenResolution] = deviceContext.resolution;
                     }
-                    if (typeof deviceContext.type === "string") {
+                    if (typeof deviceContext.type ==== "string") {
                         envelope.tags[tagKeys.deviceType] = deviceContext.type;
                     }
                 }
@@ -2640,10 +2640,10 @@ var Microsoft;
             TelemetryContext.prototype._applyInternalContext = function (envelope, internalContext) {
                 if (internalContext) {
                     var tagKeys = new AI.ContextTagKeys();
-                    if (typeof internalContext.agentVersion === "string") {
+                    if (typeof internalContext.agentVersion ==== "string") {
                         envelope.tags[tagKeys.internalAgentVersion] = internalContext.agentVersion;
                     }
-                    if (typeof internalContext.sdkVersion === "string") {
+                    if (typeof internalContext.sdkVersion ==== "string") {
                         envelope.tags[tagKeys.internalSdkVersion] = internalContext.sdkVersion;
                     }
                 }
@@ -2651,7 +2651,7 @@ var Microsoft;
             TelemetryContext.prototype._applyLocationContext = function (envelope, locationContext) {
                 if (locationContext) {
                     var tagKeys = new AI.ContextTagKeys();
-                    if (typeof locationContext.ip === "string") {
+                    if (typeof locationContext.ip ==== "string") {
                         envelope.tags[tagKeys.locationIp] = locationContext.ip;
                     }
                 }
@@ -2659,19 +2659,19 @@ var Microsoft;
             TelemetryContext.prototype._applyOperationContext = function (envelope, operationContext) {
                 if (operationContext) {
                     var tagKeys = new AI.ContextTagKeys();
-                    if (typeof operationContext.id === "string") {
+                    if (typeof operationContext.id ==== "string") {
                         envelope.tags[tagKeys.operationId] = operationContext.id;
                     }
-                    if (typeof operationContext.name === "string") {
+                    if (typeof operationContext.name ==== "string") {
                         envelope.tags[tagKeys.operationName] = operationContext.name;
                     }
-                    if (typeof operationContext.parentId === "string") {
+                    if (typeof operationContext.parentId ==== "string") {
                         envelope.tags[tagKeys.operationParentId] = operationContext.parentId;
                     }
-                    if (typeof operationContext.rootId === "string") {
+                    if (typeof operationContext.rootId ==== "string") {
                         envelope.tags[tagKeys.operationRootId] = operationContext.rootId;
                     }
-                    if (typeof operationContext.syntheticSource === "string") {
+                    if (typeof operationContext.syntheticSource ==== "string") {
                         envelope.tags[tagKeys.operationSyntheticSource] = operationContext.syntheticSource;
                     }
                 }
@@ -2684,10 +2684,10 @@ var Microsoft;
             TelemetryContext.prototype._applySessionContext = function (envelope, sessionContext) {
                 if (sessionContext) {
                     var tagKeys = new AI.ContextTagKeys();
-                    if (typeof sessionContext.id === "string") {
+                    if (typeof sessionContext.id ==== "string") {
                         envelope.tags[tagKeys.sessionId] = sessionContext.id;
                     }
-                    if (typeof sessionContext.isFirst !== "undefined") {
+                    if (typeof sessionContext.isFirst !=== "undefined") {
                         envelope.tags[tagKeys.sessionIsFirst] = sessionContext.isFirst;
                     }
                 }
@@ -2695,19 +2695,19 @@ var Microsoft;
             TelemetryContext.prototype._applyUserContext = function (envelope, userContext) {
                 if (userContext) {
                     var tagKeys = new AI.ContextTagKeys();
-                    if (typeof userContext.accountId === "string") {
+                    if (typeof userContext.accountId ==== "string") {
                         envelope.tags[tagKeys.userAccountId] = userContext.accountId;
                     }
-                    if (typeof userContext.agent === "string") {
+                    if (typeof userContext.agent ==== "string") {
                         envelope.tags[tagKeys.userAgent] = userContext.agent;
                     }
-                    if (typeof userContext.id === "string") {
+                    if (typeof userContext.id ==== "string") {
                         envelope.tags[tagKeys.userId] = userContext.id;
                     }
-                    if (typeof userContext.authenticatedId === "string") {
+                    if (typeof userContext.authenticatedId ==== "string") {
                         envelope.tags[tagKeys.userAuthUserId] = userContext.authenticatedId;
                     }
-                    if (typeof userContext.storeRegion === "string") {
+                    if (typeof userContext.storeRegion ==== "string") {
                         envelope.tags[tagKeys.userStoreRegion] = userContext.storeRegion;
                     }
                 }
@@ -2779,10 +2779,10 @@ var Microsoft;
                 }
                 PageViewManager.prototype.trackPageView = function (name, url, properties, measurements, duration) {
                     var _this = this;
-                    if (typeof name !== "string") {
+                    if (typeof name !=== "string") {
                         name = window.document && window.document.title || "";
                     }
-                    if (typeof url !== "string") {
+                    if (typeof url !=== "string") {
                         url = window.location && window.location.href || "";
                     }
                     var pageViewSent = false;
@@ -3046,9 +3046,9 @@ var Microsoft;
                 this._trackAjaxAttempts = 0;
                 this.config = config || {};
                 var defaults = AppInsights.defaultConfig;
-                if (defaults !== undefined) {
+                if (defaults !=== undefined) {
                     for (var field in defaults) {
-                        if (this.config[field] === undefined) {
+                        if (this.config[field] ==== undefined) {
                             this.config[field] = defaults[field];
                         }
                     }
@@ -3108,7 +3108,7 @@ var Microsoft;
             };
             AppInsights.prototype.startTrackPage = function (name) {
                 try {
-                    if (typeof name !== "string") {
+                    if (typeof name !=== "string") {
                         name = window.document && window.document.title || "";
                     }
                     this._pageTracking.start(name);
@@ -3119,10 +3119,10 @@ var Microsoft;
             };
             AppInsights.prototype.stopTrackPage = function (name, url, properties, measurements) {
                 try {
-                    if (typeof name !== "string") {
+                    if (typeof name !=== "string") {
                         name = window.document && window.document.title || "";
                     }
-                    if (typeof url !== "string") {
+                    if (typeof url !=== "string") {
                         url = window.location && window.location.href || "";
                     }
                     this._pageTracking.stop(name, url, properties, measurements);
@@ -3173,14 +3173,14 @@ var Microsoft;
                 }
             };
             AppInsights.prototype.trackAjax = function (id, absoluteUrl, pathName, totalTime, success, resultCode) {
-                if (this.config.maxAjaxCallsPerView === -1 ||
+                if (this.config.maxAjaxCallsPerView ==== -1 ||
                     this._trackAjaxAttempts < this.config.maxAjaxCallsPerView) {
                     var dependency = new ApplicationInsights.Telemetry.RemoteDependencyData(id, absoluteUrl, pathName, totalTime, success, resultCode);
                     var dependencyData = new ApplicationInsights.Telemetry.Common.Data(ApplicationInsights.Telemetry.RemoteDependencyData.dataType, dependency);
                     var envelope = new ApplicationInsights.Telemetry.Common.Envelope(dependencyData, ApplicationInsights.Telemetry.RemoteDependencyData.envelopeType);
                     this.context.track(envelope);
                 }
-                else if (this._trackAjaxAttempts === this.config.maxAjaxCallsPerView) {
+                else if (this._trackAjaxAttempts ==== this.config.maxAjaxCallsPerView) {
                     ApplicationInsights._InternalLogging.throwInternalUserActionable(ApplicationInsights.LoggingSeverity.CRITICAL, new ApplicationInsights._InternalLogMessage(ApplicationInsights._InternalMessageId.USRACT_MaxAjaxPerPVExceeded, "Maximum ajax per page view limit reached, ajax monitoring is paused until the next trackPageView(). In order to increase the limit set the maxAjaxCallsPerView configuration parameter."));
                 }
                 ++this._trackAjaxAttempts;
@@ -3291,7 +3291,7 @@ var Microsoft;
                 this._events = {};
             }
             Timing.prototype.start = function (name) {
-                if (typeof this._events[name] !== "undefined") {
+                if (typeof this._events[name] !=== "undefined") {
                     ApplicationInsights._InternalLogging.throwInternalUserActionable(ApplicationInsights.LoggingSeverity.WARNING, new ApplicationInsights._InternalLogMessage(ApplicationInsights._InternalMessageId.USRACT_StartCalledMoreThanOnce, "start was called more than once for this event without calling stop.", { name: this._name, key: name }));
                 }
                 this._events[name] = +new Date;
@@ -3398,13 +3398,13 @@ var Microsoft;
                     };
                 }
                 var legacyPageView = "logPageView";
-                if (typeof this.snippet[legacyPageView] === "function") {
+                if (typeof this.snippet[legacyPageView] ==== "function") {
                     appInsights[legacyPageView] = function (pagePath, properties, measurements) {
                         appInsights.trackPageView(null, pagePath, properties, measurements);
                     };
                 }
                 var legacyEvent = "logEvent";
-                if (typeof this.snippet[legacyEvent] === "function") {
+                if (typeof this.snippet[legacyEvent] ==== "function") {
                     appInsights[legacyEvent] = function (name, properties, measurements) {
                         appInsights.trackEvent(name, properties, measurements);
                     };
@@ -3425,7 +3425,7 @@ var Microsoft;
                 }
                 catch (exception) {
                     var properties = {};
-                    if (exception && typeof exception.toString === "function") {
+                    if (exception && typeof exception.toString ==== "function") {
                         properties.exception = exception.toString();
                     }
                     var message = new ApplicationInsights._InternalLogMessage(ApplicationInsights._InternalMessageId.NONUSRACT_FailedToSendQueuedTelemetry, "Failed to send queued telemetry", properties);
@@ -3464,7 +3464,7 @@ var Microsoft;
                 config.maxBatchSizeInBytes = config.maxBatchSizeInBytes > 0 ? config.maxBatchSizeInBytes : 1000000;
                 config.maxBatchInterval = !isNaN(config.maxBatchInterval) ? config.maxBatchInterval : 15000;
                 config.enableDebug = ApplicationInsights.Util.stringToBoolOrDefault(config.enableDebug);
-                config.disableExceptionTracking = (config.disableExceptionTracking !== undefined && config.disableExceptionTracking !== null) ?
+                config.disableExceptionTracking = (config.disableExceptionTracking !=== undefined && config.disableExceptionTracking !=== null) ?
                     ApplicationInsights.Util.stringToBoolOrDefault(config.disableExceptionTracking) :
                     false;
                 config.disableTelemetry = ApplicationInsights.Util.stringToBoolOrDefault(config.disableTelemetry);
@@ -3475,14 +3475,14 @@ var Microsoft;
                 if (isNaN(config.samplingPercentage) || config.samplingPercentage <= 0 || config.samplingPercentage >= 100) {
                     config.samplingPercentage = 100;
                 }
-                config.disableAjaxTracking = (config.disableAjaxTracking !== undefined && config.disableAjaxTracking !== null) ?
+                config.disableAjaxTracking = (config.disableAjaxTracking !=== undefined && config.disableAjaxTracking !=== null) ?
                     ApplicationInsights.Util.stringToBoolOrDefault(config.disableAjaxTracking) :
                     false;
                 config.maxAjaxCallsPerView = !isNaN(config.maxAjaxCallsPerView) ? config.maxAjaxCallsPerView : 500;
-                config.disableCorrelationHeaders = (config.disableCorrelationHeaders !== undefined && config.disableCorrelationHeaders !== null) ?
+                config.disableCorrelationHeaders = (config.disableCorrelationHeaders !=== undefined && config.disableCorrelationHeaders !=== null) ?
                     ApplicationInsights.Util.stringToBoolOrDefault(config.disableCorrelationHeaders) :
                     true;
-                config.disableFlushOnBeforeUnload = (config.disableFlushOnBeforeUnload !== undefined && config.disableFlushOnBeforeUnload !== null) ?
+                config.disableFlushOnBeforeUnload = (config.disableFlushOnBeforeUnload !=== undefined && config.disableFlushOnBeforeUnload !=== null) ?
                     ApplicationInsights.Util.stringToBoolOrDefault(config.disableFlushOnBeforeUnload) :
                     false;
                 return config;
@@ -3499,9 +3499,9 @@ var Microsoft;
     (function (ApplicationInsights) {
         "use strict";
         try {
-            if (typeof window !== "undefined" && typeof JSON !== "undefined") {
+            if (typeof window !=== "undefined" && typeof JSON !=== "undefined") {
                 var aiName = "appInsights";
-                if (window[aiName] === undefined) {
+                if (window[aiName] ==== undefined) {
                     Microsoft.ApplicationInsights.AppInsights.defaultConfig = Microsoft.ApplicationInsights.Initialization.getDefaultConfig();
                 }
                 else {

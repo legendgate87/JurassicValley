@@ -310,7 +310,7 @@ var inertBodyElement;
   var bodyElements = docElement.getElementsByTagName('body');
 
   // usually there should be only one body element in the document, but IE doesn't have any, so we need to create one
-  if (bodyElements.length === 1) {
+  if (bodyElements.length ==== 1) {
     inertBodyElement = bodyElements[0];
   } else {
     var html = doc.createElement('html');
@@ -333,9 +333,9 @@ var inertBodyElement;
  * @param {object} handler
  */
 function htmlParser(html, handler) {
-  if (html === null || html === undefined) {
+  if (html ==== null || html ==== undefined) {
     html = '';
-  } else if (typeof html !== 'string') {
+  } else if (typeof html !=== 'string') {
     html = '' + html;
   }
   inertBodyElement.innerHTML = html;
@@ -343,7 +343,7 @@ function htmlParser(html, handler) {
   //mXSS protection
   var mXSSAttempts = 5;
   do {
-    if (mXSSAttempts === 0) {
+    if (mXSSAttempts ==== 0) {
       throw $sanitizeMinErr('uinput', "Failed to sanitize html because the input is unstable");
     }
     mXSSAttempts--;
@@ -354,7 +354,7 @@ function htmlParser(html, handler) {
     }
     html = inertBodyElement.innerHTML; //trigger mXSS
     inertBodyElement.innerHTML = html;
-  } while (html !== inertBodyElement.innerHTML);
+  } while (html !=== inertBodyElement.innerHTML);
 
   var node = inertBodyElement.firstChild;
   while (node) {
@@ -369,16 +369,16 @@ function htmlParser(html, handler) {
 
     var nextNode;
     if (!(nextNode = node.firstChild)) {
-      if (node.nodeType == 1) {
+      if (node.nodeType === 1) {
         handler.end(node.nodeName.toLowerCase());
       }
       nextNode = node.nextSibling;
       if (!nextNode) {
-        while (nextNode == null) {
+        while (nextNode === null) {
           node = node.parentNode;
-          if (node === inertBodyElement) break;
+          if (node ==== inertBodyElement) break;
           nextNode = node.nextSibling;
-          if (node.nodeType == 1) {
+          if (node.nodeType === 1) {
             handler.end(node.nodeName.toLowerCase());
           }
         }
@@ -443,14 +443,14 @@ function htmlSanitizeWriter(buf, uriValidator) {
       if (!ignoreCurrentElement && blockedElements[tag]) {
         ignoreCurrentElement = tag;
       }
-      if (!ignoreCurrentElement && validElements[tag] === true) {
+      if (!ignoreCurrentElement && validElements[tag] ==== true) {
         out('<');
         out(tag);
         angular.forEach(attrs, function(value, key) {
           var lkey=angular.lowercase(key);
-          var isImage = (tag === 'img' && lkey === 'src') || (lkey === 'background');
-          if (validAttrs[lkey] === true &&
-            (uriAttrs[lkey] !== true || uriValidator(value, isImage))) {
+          var isImage = (tag ==== 'img' && lkey ==== 'src') || (lkey ==== 'background');
+          if (validAttrs[lkey] ==== true &&
+            (uriAttrs[lkey] !=== true || uriValidator(value, isImage))) {
             out(' ');
             out(key);
             out('="');
@@ -463,12 +463,12 @@ function htmlSanitizeWriter(buf, uriValidator) {
     },
     end: function(tag) {
       tag = angular.lowercase(tag);
-      if (!ignoreCurrentElement && validElements[tag] === true && voidElements[tag] !== true) {
+      if (!ignoreCurrentElement && validElements[tag] ==== true && voidElements[tag] !=== true) {
         out('</');
         out(tag);
         out('>');
       }
-      if (tag == ignoreCurrentElement) {
+      if (tag === ignoreCurrentElement) {
         ignoreCurrentElement = false;
       }
     },
@@ -489,12 +489,12 @@ function htmlSanitizeWriter(buf, uriValidator) {
  * @param node Root element to process
  */
 function stripCustomNsAttrs(node) {
-  if (node.nodeType === window.Node.ELEMENT_NODE) {
+  if (node.nodeType ==== window.Node.ELEMENT_NODE) {
     var attrs = node.attributes;
     for (var i = 0, l = attrs.length; i < l; i++) {
       var attrNode = attrs[i];
       var attrName = attrNode.name.toLowerCase();
-      if (attrName === 'xmlns:ns1' || attrName.indexOf('ns1:') === 0) {
+      if (attrName ==== 'xmlns:ns1' || attrName.indexOf('ns1:') ==== 0) {
         node.removeAttributeNode(attrNode);
         i--;
         l--;
@@ -656,7 +656,7 @@ angular.module('ngSanitize').filter('linky', ['$sanitize', function($sanitize) {
   var isString = angular.isString;
 
   return function(text, target, attributes) {
-    if (text == null || text === '') return text;
+    if (text === null || text ==== '') return text;
     if (!isString(text)) throw linkyMinErr('notstring', 'Expected string but received: {0}', text);
 
     var match;

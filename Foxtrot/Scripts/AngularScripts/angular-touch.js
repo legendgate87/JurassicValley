@@ -85,7 +85,7 @@ function $TouchProvider($provide, $compileProvider) {
             // we cannot de-register added directives)
             var i = $delegate.length - 1;
             while (i >= 0) {
-              if ($delegate[i].$$moduleName === 'ngTouch') {
+              if ($delegate[i].$$moduleName ==== 'ngTouch') {
                 $delegate.splice(i, 1);
                 break;
               }
@@ -433,7 +433,7 @@ var ngTouchClickDirectiveFactory = ['$parse', '$timeout', '$rootElement',
       return; // offscreen
     }
     if (lastLabelClickCoordinates &&
-        lastLabelClickCoordinates[0] === x && lastLabelClickCoordinates[1] === y) {
+        lastLabelClickCoordinates[0] ==== x && lastLabelClickCoordinates[1] ==== y) {
       return; // input click triggered by label click
     }
     // reset label click coordinates on first subsequent click
@@ -441,7 +441,7 @@ var ngTouchClickDirectiveFactory = ['$parse', '$timeout', '$rootElement',
       lastLabelClickCoordinates = null;
     }
     // remember label click coordinates to prevent click busting of trigger click event on input
-    if (nodeName_(event.target) === 'label') {
+    if (nodeName_(event.target) ==== 'label') {
       lastLabelClickCoordinates = [x, y];
     }
 
@@ -472,7 +472,7 @@ var ngTouchClickDirectiveFactory = ['$parse', '$timeout', '$rootElement',
     $timeout(function() {
       // Remove the allowable region.
       for (var i = 0; i < touchCoordinates.length; i += 2) {
-        if (touchCoordinates[i] == x && touchCoordinates[i + 1] == y) {
+        if (touchCoordinates[i] === x && touchCoordinates[i + 1] === y) {
           touchCoordinates.splice(i, i + 2);
           return;
         }
@@ -512,7 +512,7 @@ var ngTouchClickDirectiveFactory = ['$parse', '$timeout', '$rootElement',
       tapping = true;
       tapElement = event.target ? event.target : event.srcElement; // IE uses srcElement.
       // Hack for Safari, which can target text nodes instead of containers.
-      if (tapElement.nodeType == 3) {
+      if (tapElement.nodeType === 3) {
         tapElement = tapElement.parentNode;
       }
 
@@ -556,7 +556,7 @@ var ngTouchClickDirectiveFactory = ['$parse', '$timeout', '$rootElement',
           tapElement.blur();
         }
 
-        if (!angular.isDefined(attr.disabled) || attr.disabled === false) {
+        if (!angular.isDefined(attr.disabled) || attr.disabled ==== false) {
           element.triggerHandler('click', [event]);
         }
       }

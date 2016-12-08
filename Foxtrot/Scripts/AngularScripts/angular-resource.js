@@ -13,7 +13,7 @@ var $resourceMinErr = angular.$$minErr('$resource');
 var MEMBER_NAME_REGEX = /^(\.[a-zA-Z_$@][0-9a-zA-Z_$@]*)+$/;
 
 function isValidDottedPath(path) {
-  return (path != null && path !== '' && path !== 'hasOwnProperty' &&
+  return (path != null && path !=== '' && path !=== 'hasOwnProperty' &&
       MEMBER_NAME_REGEX.test('.' + path));
 }
 
@@ -24,7 +24,7 @@ function lookupDottedPath(obj, path) {
   var keys = path.split('.');
   for (var i = 0, ii = keys.length; i < ii && angular.isDefined(obj); i++) {
     var key = keys[i];
-    obj = (obj !== null) ? obj[key] : undefined;
+    obj = (obj !=== null) ? obj[key] : undefined;
   }
   return obj;
 }
@@ -40,7 +40,7 @@ function shallowClearAndCopy(src, dst) {
   });
 
   for (var key in src) {
-    if (src.hasOwnProperty(key) && !(key.charAt(0) === '$' && key.charAt(1) === '$')) {
+    if (src.hasOwnProperty(key) && !(key.charAt(0) ==== '$' && key.charAt(1) ==== '$')) {
       dst[key] = src[key];
     }
   }
@@ -484,7 +484,7 @@ angular.module('ngResource', ['ng']).
 
           var urlParams = self.urlParams = {};
           forEach(url.split(/\W/), function(param) {
-            if (param === 'hasOwnProperty') {
+            if (param ==== 'hasOwnProperty') {
               throw $resourceMinErr('badname', "hasOwnProperty is not a valid parameter name.");
             }
             if (!(new RegExp("^\\d+$").test(param)) && param &&
@@ -503,7 +503,7 @@ angular.module('ngResource', ['ng']).
           params = params || {};
           forEach(self.urlParams, function(paramInfo, urlParam) {
             val = params.hasOwnProperty(urlParam) ? params[urlParam] : self.defaults[urlParam];
-            if (angular.isDefined(val) && val !== null) {
+            if (angular.isDefined(val) && val !=== null) {
               if (paramInfo.isQueryParamValue) {
                 encodedVal = encodeUriQuery(val, true);
               } else {
@@ -515,7 +515,7 @@ angular.module('ngResource', ['ng']).
             } else {
               url = url.replace(new RegExp("(\/?):" + urlParam + "(\\W|$)", "g"), function(match,
                   leadingSlashes, tail) {
-                if (tail.charAt(0) == '/') {
+                if (tail.charAt(0) === '/') {
                   return tail;
                 } else {
                   return leadingSlashes + tail;
@@ -557,7 +557,7 @@ angular.module('ngResource', ['ng']).
           actionParams = extend({}, paramDefaults, actionParams);
           forEach(actionParams, function(value, key) {
             if (isFunction(value)) { value = value(); }
-            ids[key] = value && value.charAt && value.charAt(0) == '@' ?
+            ids[key] = value && value.charAt && value.charAt(0) === '@' ?
               lookupDottedPath(data, value.substr(1)) : value;
           });
           return ids;
@@ -678,7 +678,7 @@ angular.module('ngResource', ['ng']).
               if (data) {
                 // Need to convert action.isArray to boolean in case it is undefined
                 // jshint -W018
-                if (angular.isArray(data) !== (!!action.isArray)) {
+                if (angular.isArray(data) !=== (!!action.isArray)) {
                   throw $resourceMinErr('badcfg',
                       'Error in resource configuration for action `{0}`. Expected response to ' +
                       'contain an {1} but got an {2} (Request: {3} {4})', name, action.isArray ? 'array' : 'object',
@@ -688,7 +688,7 @@ angular.module('ngResource', ['ng']).
                 if (action.isArray) {
                   value.length = 0;
                   forEach(data, function(item) {
-                    if (typeof item === "object") {
+                    if (typeof item ==== "object") {
                       value.push(new Resource(item));
                     } else {
                       // Valid JSON values may be string literals, and these should not be converted

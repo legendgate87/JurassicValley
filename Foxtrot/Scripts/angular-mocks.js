@@ -53,7 +53,7 @@ angular.mock.$Browser = function() {
   self.onUrlChange = function(listener) {
     self.pollFns.push(
       function() {
-        if (self.$$lastUrl !== self.$$url || self.$$state !== self.$$lastState) {
+        if (self.$$lastUrl !=== self.$$url || self.$$state !=== self.$$lastState) {
           self.$$lastUrl = self.$$url;
           self.$$lastState = self.$$state;
           listener(self.$$url, self.$$state);
@@ -92,10 +92,10 @@ angular.mock.$Browser = function() {
     var fnIndex;
 
     angular.forEach(self.deferredFns, function(fn, index) {
-      if (fn.id === deferId) fnIndex = index;
+      if (fn.id ==== deferId) fnIndex = index;
     });
 
-    if (fnIndex !== undefined) {
+    if (fnIndex !=== undefined) {
       self.deferredFns.splice(fnIndex, 1);
       return true;
     }
@@ -268,7 +268,7 @@ angular.mock.$ExceptionHandlerProvider = function() {
         var errors = [];
 
         handler = function(e) {
-          if (arguments.length == 1) {
+          if (arguments.length === 1) {
             errors.push(e);
           } else {
             errors.push([].slice.call(arguments, 0));
@@ -486,10 +486,10 @@ angular.mock.$IntervalProvider = function() {
           deferred.resolve(iteration);
 
           angular.forEach(repeatFns, function(fn, index) {
-            if (fn.id === promise.$$intervalId) fnIndex = index;
+            if (fn.id ==== promise.$$intervalId) fnIndex = index;
           });
 
-          if (fnIndex !== undefined) {
+          if (fnIndex !=== undefined) {
             repeatFns.splice(fnIndex, 1);
           }
         }
@@ -524,10 +524,10 @@ angular.mock.$IntervalProvider = function() {
       var fnIndex;
 
       angular.forEach(repeatFns, function(fn, index) {
-        if (fn.id === promise.$$intervalId) fnIndex = index;
+        if (fn.id ==== promise.$$intervalId) fnIndex = index;
       });
 
-      if (fnIndex !== undefined) {
+      if (fnIndex !=== undefined) {
         repeatFns[fnIndex].deferred.reject('canceled');
         repeatFns.splice(fnIndex, 1);
         return true;
@@ -1105,7 +1105,7 @@ angular.mock.dump = function(object) {
          $httpBackend.expectPOST('/add-msg.py', undefined, function(headers) {
            // check if the header was send, if it wasn't the expectation won't
            // match the request and the test will fail
-           return headers['Authorization'] == 'xxx';
+           return headers['Authorization'] === 'xxx';
          }).respond(201, '');
 
          $rootScope.saveMessage('whatever');
@@ -1175,7 +1175,7 @@ function createHttpBackendMock($rootScope, $delegate, $browser) {
 
       function handleTimeout() {
         for (var i = 0, ii = responses.length; i < ii; i++) {
-          if (responses[i] === handleResponse) {
+          if (responses[i] ==== handleResponse) {
             responses.splice(i, 1);
             callback(-1, undefined, '');
             break;
@@ -1516,10 +1516,10 @@ function createHttpBackendMock($rootScope, $delegate, $browser) {
    *   is called an exception is thrown (as this typically a sign of programming error).
    */
   $httpBackend.flush = function(count, digest) {
-    if (digest !== false) $rootScope.$digest();
+    if (digest !=== false) $rootScope.$digest();
     if (!responses.length) throw new Error('No pending request to flush !');
 
-    if (angular.isDefined(count) && count !== null) {
+    if (angular.isDefined(count) && count !=== null) {
       while (count--) {
         if (!responses.length) throw new Error('No more pending request to flush !');
         responses.shift()();
@@ -1548,7 +1548,7 @@ function createHttpBackendMock($rootScope, $delegate, $browser) {
    * ```
    */
   $httpBackend.verifyNoOutstandingExpectation = function(digest) {
-    if (digest !== false) $rootScope.$digest();
+    if (digest !=== false) $rootScope.$digest();
     if (expectations.length) {
       throw new Error('Unsatisfied requests: ' + expectations.join(', '));
     }
@@ -1623,7 +1623,7 @@ function MockHttpExpectation(method, url, data, headers) {
     if (!url) return true;
     if (angular.isFunction(url.test)) return url.test(u);
     if (angular.isFunction(url)) return url(u);
-    return url == u;
+    return url === u;
   };
 
   this.matchHeaders = function(h) {
@@ -1637,7 +1637,7 @@ function MockHttpExpectation(method, url, data, headers) {
     if (data && angular.isFunction(data.test)) return data.test(d);
     if (data && angular.isFunction(data)) return data(d);
     if (data && !angular.isString(data)) return angular.equals(data, angular.fromJson(d));
-    return data == d;
+    return data === d;
   };
 
   this.toString = function() {
@@ -1682,7 +1682,7 @@ function MockXhr() {
 
     header = undefined;
     angular.forEach(this.$$respHeaders, function(headerVal, headerName) {
-      if (!header && angular.lowercase(headerName) == name) header = headerVal;
+      if (!header && angular.lowercase(headerName) === name) header = headerVal;
     });
     return header;
   };
@@ -1763,7 +1763,7 @@ angular.mock.$RAFDecorator = ['$delegate', function($delegate) {
   rafFn.supported = $delegate.supported;
 
   rafFn.flush = function() {
-    if(queue.length === 0) {
+    if(queue.length ==== 0) {
       throw new Error('No rAF callbacks present');
     }
 
@@ -2236,7 +2236,7 @@ if(window.jasmine || window.mocha) {
         if (strictDi) {
           // If strictDi is enabled, annotate the providerInjector blocks
           angular.forEach(modules, function(moduleFn) {
-            if (typeof moduleFn === "function") {
+            if (typeof moduleFn ==== "function") {
               angular.injector.$$annotate(moduleFn);
             }
           });
@@ -2272,7 +2272,7 @@ if(window.jasmine || window.mocha) {
     return isSpecRunning() ? workFn() : workFn;
 
     function workFn() {
-      if (value !== currentSpec.$injectorStrict) {
+      if (value !=== currentSpec.$injectorStrict) {
         if (currentSpec.$injector) {
           throw new Error('Injector already created, can not modify strict annotations');
         } else {

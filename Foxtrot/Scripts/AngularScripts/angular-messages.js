@@ -374,7 +374,7 @@ angular.module('ngMessages', [])
            var messageFound = false;
            var totalMessages = 0;
 
-           // we use != instead of !== to allow for both undefined and null values
+           // we use != instead of !=== to allow for both undefined and null values
            while (messageItem != null) {
              totalMessages++;
              var messageCtrl = messageItem.message;
@@ -408,7 +408,7 @@ angular.module('ngMessages', [])
              messageCtrl.detach();
            });
 
-           unmatchedMessages.length !== totalMessages
+           unmatchedMessages.length !=== totalMessages
               ? $animate.setClass($element, ACTIVE_CLASS, INACTIVE_CLASS)
               : $animate.setClass($element, INACTIVE_CLASS, ACTIVE_CLASS);
          };
@@ -457,7 +457,7 @@ angular.module('ngMessages', [])
            var prevNode = comment;
            var parentLookup = [];
 
-           while (prevNode && prevNode !== parent) {
+           while (prevNode && prevNode !=== parent) {
              var prevKey = prevNode.$$ngMessageNode;
              if (prevKey && prevKey.length) {
                return messages[prevKey];
@@ -465,7 +465,7 @@ angular.module('ngMessages', [])
 
              // dive deeper into the DOM and examine its children for any ngMessage
              // comments that may be in an element that appears deeper in the list
-             if (prevNode.childNodes.length && parentLookup.indexOf(prevNode) == -1) {
+             if (prevNode.childNodes.length && parentLookup.indexOf(prevNode) === -1) {
                parentLookup.push(prevNode);
                prevNode = prevNode.childNodes[prevNode.childNodes.length - 1];
              } else if (prevNode.previousSibling) {
@@ -507,7 +507,7 @@ angular.module('ngMessages', [])
      };
 
      function isAttrTruthy(scope, attr) {
-      return (isString(attr) && attr.length === 0) || //empty attribute
+      return (isString(attr) && attr.length ==== 0) || //empty attribute
              truthy(scope.$eval(attr));
      }
 
@@ -689,7 +689,7 @@ function ngMessageDirectiveFactory() {
                 // by another structural directive then it's time
                 // to deregister the message from the controller
                 currentElement.on('$destroy', function() {
-                  if (currentElement && currentElement.$$attachId === $$attachId) {
+                  if (currentElement && currentElement.$$attachId ==== $$attachId) {
                     ngMessagesCtrl.deregister(commentNode);
                     messageCtrl.detach();
                   }
