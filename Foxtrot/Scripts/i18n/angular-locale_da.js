@@ -4,13 +4,13 @@ var PLURAL_CATEGORY = {ZERO: "zero", ONE: "one", TWO: "two", FEW: "few", MANY: "
 function getDecimals(n) {
   n = n + '';
   var i = n.indexOf('.');
-  return (i === -1) ? 0 : n.length - i - 1;
+  return (i == -1) ? 0 : n.length - i - 1;
 }
 
 function getVF(n, opt_precision) {
   var v = opt_precision;
 
-  if (undefined ==== v) {
+  if (undefined === v) {
     v = Math.min(getDecimals(n), 3);
   }
 
@@ -20,11 +20,11 @@ function getVF(n, opt_precision) {
 }
 
 function getWT(v, f) {
-  if (f ==== 0) {
+  if (f === 0) {
     return {w: 0, t: 0};
   }
 
-  while ((f % 10) ==== 0) {
+  while ((f % 10) === 0) {
     f /= 10;
     v--;
   }
@@ -151,6 +151,6 @@ $provide.value("$locale", {
   },
   "id": "da",
   "localeID": "da",
-  "pluralCat": function(n, opt_precision) {  var i = n | 0;  var vf = getVF(n, opt_precision);  var wt = getWT(vf.v, vf.f);  if (n === 1 || wt.t != 0 && (i === 0 || i === 1)) {    return PLURAL_CATEGORY.ONE;  }  return PLURAL_CATEGORY.OTHER;}
+  "pluralCat": function(n, opt_precision) {  var i = n | 0;  var vf = getVF(n, opt_precision);  var wt = getWT(vf.v, vf.f);  if (n == 1 || wt.t != 0 && (i == 0 || i == 1)) {    return PLURAL_CATEGORY.ONE;  }  return PLURAL_CATEGORY.OTHER;}
 });
 }]);

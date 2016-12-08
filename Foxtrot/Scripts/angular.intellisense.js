@@ -68,7 +68,7 @@
             value = '$ELEMENT';
         } else if (isWindow(value)) {
             value = '$WINDOW';
-        } else if (value && document ==== value) {
+        } else if (value && document === value) {
             value = '$DOCUMENT';
         } else if (isScope(value)) {
             value = '$SCOPE';
@@ -101,7 +101,7 @@
 
     function forEach(obj, iterator, context) {
         var key;
-        if (obj.forEach && obj.forEach !=== forEach) {
+        if (obj.forEach && obj.forEach !== forEach) {
             obj.forEach(iterator, context);
         } else if (angular.isArray(obj)) {
             for (key = 0; key < obj.length; key++) {
@@ -419,7 +419,7 @@
     var originalModuleFunction = angular.module;
 
     angular.module = function (name, requires, configFn) {
-        var hasModuleBeenTracked = requiredModuleMap[name] !=== undefined;
+        var hasModuleBeenTracked = requiredModuleMap[name] !== undefined;
 
         logMessage(LOG_LEVEL.VERBOSE, 'Calling "angular.module" with the following arguments:');
         logValue(LOG_LEVEL.VERBOSE, arguments);
@@ -440,7 +440,7 @@
 
         // HACK: For some reason, the implicit require of the 'ng' module gets dropped in the call to the originalModuleFunction
         // this re-adds it if it wasn't explicit
-        if (angular.isArray(returnValue.requires) && requires.indexOf('ng') === -1) {
+        if (angular.isArray(returnValue.requires) && requires.indexOf('ng') == -1) {
             returnValue.requires = requires.concat('ng');
         }
 
@@ -473,7 +473,7 @@
             moduleName = module.name;
         }
 
-        if (requiredModuleMap[moduleName] ==== undefined) {
+        if (requiredModuleMap[moduleName] === undefined) {
             logMessage(LOG_LEVEL.INFO, 'Tracking module "' + moduleName + '".');
 
             // Store the module name mapped to the names of all required modules.
@@ -529,7 +529,7 @@
                     // (This will execute all configuration and run blocks.)
                     var injector = angular.injector(requiredModuleMap[module.name]);
 
-                    if (arguments.length ==== 2) {
+                    if (arguments.length === 2) {
                         var component;
                         var locals;
 
@@ -580,7 +580,7 @@
                         logMessage(LOG_LEVEL.VERBOSE, 'Creating instance of ' + providerFunction + ' "' + arguments[0] + '" returned the following:');
                         logValue(LOG_LEVEL.VERBOSE, component);
 
-                        if (providerFunction ==== 'directive') {
+                        if (providerFunction === 'directive') {
                             // HACK: (JMB) Execute directive functions with AngularJS mocks.
                             var controller,
                                 $scope = injector.get('$rootScope').$new(),
@@ -638,7 +638,7 @@
                                     logValue(LOG_LEVEL.VERBOSE, returnValue);
                                 }
                             }
-                        } else if (providerFunction ==== 'animation') {
+                        } else if (providerFunction === 'animation') {
                             // HACK: (JMB) Execute animate functions with AngularJS mocks.
                             var element = angular.element(),
                             doneCallback = function () { };
@@ -762,7 +762,7 @@
             source[method] = function () {
                 // Don't actually call the original method, since it interferes with Intellisense.
 
-                if (method === 'module') {
+                if (method == 'module') {
                     // Track each named module, call each anonymous module.
                     forEach(arguments, function (argument) {
                         if (angular.isString(argument)) {
@@ -776,7 +776,7 @@
                             providerInjector.invoke(argument);
                         }
                     });
-                } else if (method === 'inject') {
+                } else if (method == 'inject') {
                     // Perform injection on each argument of the method.
                     forEach(arguments, function (argument) {
                         jasmineInjector.invoke(argument);
@@ -787,7 +787,7 @@
                         argument();
                     });
 
-                    if (method ==== 'expect') {
+                    if (method === 'expect') {
                         // Return an expectation from calls to expect.
                         return jasmine.Expectation.Factory();
                     }

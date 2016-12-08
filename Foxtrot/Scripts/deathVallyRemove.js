@@ -157,14 +157,14 @@ function simFox() {
 
 
         //Year ++
-        if (monthNumber === 12) {
+        if (monthNumber == 12) {
             year++;
             monthNumber = 0;
             i = 0;
         }
 
       
-        if (monthNumber > 4 && monthNumber % 2 === 0) {
+        if (monthNumber > 4 && monthNumber % 2 == 0) {
             
             //Fox deaths
             numFoxes -= RanFoxM;
@@ -173,7 +173,7 @@ function simFox() {
         }
 
 
-        if (monthNumber > 4 && monthNumber % 2 === 0) {
+        if (monthNumber > 4 && monthNumber % 2 == 0) {
 
             //Rabbit deaths
             numRabbits -= RanRabM;
@@ -244,7 +244,7 @@ function submitMyForm() {
             url: "/Tomb/Create02",
             data: dataToSend,
             success: function (response) {
-          //      if (response.data === "Done!") {
+          //      if (response.data == "Done!") {
           //          alert("Data has been added");
           //      } else {
           //          alert(response);
@@ -269,7 +269,7 @@ function submitMyFormTwo() {
         url: "/Tomb/Create02",
         data: dataToSend,
         success: function (response) {
-            //      if (response.data === "Done!") {
+            //      if (response.data == "Done!") {
             //          alert("Data has been added");
             //      } else {
             //          alert(response);

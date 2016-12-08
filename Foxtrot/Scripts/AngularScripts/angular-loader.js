@@ -5,7 +5,7 @@
  */
 
 (function() {'use strict';
-    function isFunction(value) {return typeof value ==== 'function';};
+    function isFunction(value) {return typeof value === 'function';};
 
 /* global: toDebugString: true */
 
@@ -25,11 +25,11 @@ function serializeObject(obj) {
 }
 
 function toDebugString(obj) {
-  if (typeof obj ==== 'function') {
+  if (typeof obj === 'function') {
     return obj.toString().replace(/ \{[\s\S]*$/, '');
   } else if (isUndefined(obj)) {
     return 'undefined';
-  } else if (typeof obj !=== 'string') {
+  } else if (typeof obj !== 'string') {
     return serializeObject(obj);
   }
   return obj;
@@ -179,7 +179,7 @@ function setupModuleLoader(window) {
      */
     return function module(name, requires, configFn) {
       var assertNotHasOwnProperty = function(name, context) {
-        if (name ==== 'hasOwnProperty') {
+        if (name === 'hasOwnProperty') {
           throw ngMinErr('badname', 'hasOwnProperty is not a valid {0} name', context);
         }
       };

@@ -120,6 +120,6 @@ $provide.value("$locale", {
   },
   "id": "bg-bg",
   "localeID": "bg_BG",
-  "pluralCat": function(n, opt_precision) {  if (n === 1) {    return PLURAL_CATEGORY.ONE;  }  return PLURAL_CATEGORY.OTHER;}
+  "pluralCat": function(n, opt_precision) {  if (n == 1) {    return PLURAL_CATEGORY.ONE;  }  return PLURAL_CATEGORY.OTHER;}
 });
 }]);

@@ -33,7 +33,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
     div.innerHTML = '&shy;<style media="'+q+'"> #mq-test-1 { width: 42px; }</style>';
     
     docElem.insertBefore(fakeBody, refNode);
-    bool = div.offsetWidth === 42;  
+    bool = div.offsetWidth == 42;  
     docElem.removeChild(fakeBody);
     
     return { matches: bool, media: q };
@@ -83,7 +83,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 				sheet	= sheets[ i ],
 				href	= sheet.href,
 				media	= sheet.media,
-				isCSS	= sheet.rel && sheet.rel.toLowerCase() ==== "stylesheet";
+				isCSS	= sheet.rel && sheet.rel.toLowerCase() === "stylesheet";
 
 				//only links plz and prevent re-parsing
 				if( !!href && isCSS && !parsedSheets[ href ] ){
@@ -93,7 +93,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 						parsedSheets[ href ] = true;
 					} else {
 						if( (!/^([a-zA-Z:]*\/\/)/.test( href ) && !base)
-							|| href.replace( RegExp.$1, "" ).split( "/" )[0] ==== win.location.host ){
+							|| href.replace( RegExp.$1, "" ).split( "/" )[0] === win.location.host ){
 							requestQueue.push( {
 								href: href,
 								media: media
@@ -220,7 +220,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 		applyMedia			= function( fromResize ){
 			var name		= "clientWidth",
 				docElemProp	= docElem[ name ],
-				currWidth 	= doc.compatMode ==== "CSS1Compat" && docElemProp || doc.body[ name ] || docElemProp,
+				currWidth 	= doc.compatMode === "CSS1Compat" && docElemProp || doc.body[ name ] || docElemProp,
 				styleBlocks	= {},
 				lastLink	= links[ links.length-1 ],
 				now 		= (new Date()).getTime();
@@ -239,8 +239,8 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 				var thisstyle = mediastyles[ i ],
 					min = thisstyle.minw,
 					max = thisstyle.maxw,
-					minnull = min ==== null,
-					maxnull = max ==== null,
+					minnull = min === null,
+					maxnull = max === null,
 					em = "em";
 				
 				if( !!min ){
@@ -261,7 +261,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 			
 			//remove any existing respond style element(s)
 			for( var i in appendedEls ){
-				if( appendedEls[ i ] && appendedEls[ i ].parentNode ==== head ){
+				if( appendedEls[ i ] && appendedEls[ i ].parentNode === head ){
 					head.removeChild( appendedEls[ i ] );
 				}
 			}
@@ -302,7 +302,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 				}
 				callback( req.responseText );
 			}
-			if ( req.readyState === 4 ){
+			if ( req.readyState == 4 ){
 				return;
 			}
 			req.send( null );

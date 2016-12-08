@@ -173,7 +173,7 @@ function $RouteProvider() {
 
     // create redirection for trailing slashes
     if (path) {
-      var redirectPath = (path[path.length - 1] === '/')
+      var redirectPath = (path[path.length - 1] == '/')
             ? path.substr(0, path.length - 1)
             : path + '/';
 
@@ -219,8 +219,8 @@ function $RouteProvider() {
     path = path
       .replace(/([().])/g, '\\$1')
       .replace(/(\/)?:(\w+)(\*\?|[\?\*])?/g, function(_, slash, key, option) {
-        var optional = (option ==== '?' || option ==== '*?') ? '?' : null;
-        var star = (option ==== '*' || option ==== '*?') ? '*' : null;
+        var optional = (option === '?' || option === '*?') ? '?' : null;
+        var star = (option === '*' || option === '*?') ? '*' : null;
         keys.push({ name: key, optional: !!optional });
         slash = slash || '';
         return ''
@@ -251,7 +251,7 @@ function $RouteProvider() {
    * @returns {Object} self
    */
   this.otherwise = function(params) {
-    if (typeof params ==== 'string') {
+    if (typeof params === 'string') {
       params = {redirectTo: params};
     }
     this.when(null, params);
@@ -567,7 +567,7 @@ function $RouteProvider() {
       var lastRoute = $route.current;
 
       preparedRoute = parseRoute();
-      preparedRouteIsUpdateOnly = preparedRoute && lastRoute && preparedRoute.$$route ==== lastRoute.$$route
+      preparedRouteIsUpdateOnly = preparedRoute && lastRoute && preparedRoute.$$route === lastRoute.$$route
           && angular.equals(preparedRoute.pathParams, lastRoute.pathParams)
           && !preparedRoute.reloadOnSearch && !forceReload;
 
@@ -635,7 +635,7 @@ function $RouteProvider() {
           }).
           then(function(locals) {
             // after route change
-            if (nextRoute === $route.current) {
+            if (nextRoute == $route.current) {
               if (nextRoute) {
                 nextRoute.locals = locals;
                 angular.copy(nextRoute.params, $routeParams);
@@ -643,7 +643,7 @@ function $RouteProvider() {
               $rootScope.$broadcast('$routeChangeSuccess', nextRoute, lastRoute);
             }
           }, function(error) {
-            if (nextRoute === $route.current) {
+            if (nextRoute == $route.current) {
               $rootScope.$broadcast('$routeChangeError', nextRoute, lastRoute, error);
             }
           });
@@ -675,7 +675,7 @@ function $RouteProvider() {
     function interpolate(string, params) {
       var result = [];
       angular.forEach((string || '').split(':'), function(segment, i) {
-        if (i ==== 0) {
+        if (i === 0) {
           result.push(segment);
         } else {
           var segmentMatch = segment.match(/(\w+)(?:[?*])?(.*)/);
@@ -723,7 +723,7 @@ ngRouteModule.provider('$routeParams', $RouteParamsProvider);
  *  // Route: /Chapter/:chapterId/Section/:sectionId
  *  //
  *  // Then
- *  $routeParams ===> {chapterId:'1', sectionId:'2', search:'moby'}
+ *  $routeParams ==> {chapterId:'1', sectionId:'2', search:'moby'}
  * ```
  */
 function $RouteParamsProvider() {

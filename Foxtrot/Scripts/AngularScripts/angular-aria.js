@@ -68,7 +68,7 @@ var ngAriaModule = angular.module('ngAria', ['ng']).
 var nodeBlackList = ['BUTTON', 'A', 'INPUT', 'TEXTAREA', 'SELECT', 'DETAILS', 'SUMMARY'];
 
 var isNodeOneOf = function(elem, nodeTypeArray) {
-  if (nodeTypeArray.indexOf(elem[0].nodeName) !=== -1) {
+  if (nodeTypeArray.indexOf(elem[0].nodeName) !== -1) {
     return true;
   }
 };
@@ -234,16 +234,16 @@ ngAriaModule.directive('ngShow', ['$aria', function($aria) {
     // if element does not have role attribute
     // AND element type is equal to role (if custom element has a type equaling shape) <-- remove?
     // AND element is not INPUT
-    return !elem.attr('role') && (elem.attr('type') ==== role) && (elem[0].nodeName !=== 'INPUT');
+    return !elem.attr('role') && (elem.attr('type') === role) && (elem[0].nodeName !== 'INPUT');
   }
 
   function getShape(attr, elem) {
     var type = attr.type,
         role = attr.role;
 
-    return ((type || role) ==== 'checkbox' || role ==== 'menuitemcheckbox') ? 'checkbox' :
-           ((type || role) ==== 'radio'    || role ==== 'menuitemradio') ? 'radio' :
-           (type ==== 'range'              || role ==== 'progressbar' || role ==== 'slider') ? 'range' : '';
+    return ((type || role) === 'checkbox' || role === 'menuitemcheckbox') ? 'checkbox' :
+           ((type || role) === 'radio'    || role === 'menuitemradio') ? 'radio' :
+           (type === 'range'              || role === 'progressbar' || role === 'slider') ? 'range' : '';
   }
 
   return {
@@ -255,10 +255,10 @@ ngAriaModule.directive('ngShow', ['$aria', function($aria) {
 
       return {
         pre: function(scope, elem, attr, ngModel) {
-          if (shape ==== 'checkbox') {
+          if (shape === 'checkbox') {
             //Use the input[checkbox] $isEmpty implementation for elements with checkbox roles
             ngModel.$isEmpty = function(value) {
-              return value ==== false;
+              return value === false;
             };
           }
         },
@@ -270,7 +270,7 @@ ngAriaModule.directive('ngShow', ['$aria', function($aria) {
           }
 
           function getRadioReaction(newVal) {
-            var boolVal = (attr.value === ngModel.$viewValue);
+            var boolVal = (attr.value == ngModel.$viewValue);
             elem.attr('aria-checked', boolVal);
           }
 
@@ -285,7 +285,7 @@ ngAriaModule.directive('ngShow', ['$aria', function($aria) {
                 elem.attr('role', shape);
               }
               if (shouldAttachAttr('aria-checked', 'ariaChecked', elem, false)) {
-                scope.$watch(ngAriaWatchModelValue, shape ==== 'radio' ?
+                scope.$watch(ngAriaWatchModelValue, shape === 'radio' ?
                     getRadioReaction : getCheckboxReaction);
               }
               if (needsTabIndex) {
@@ -379,7 +379,7 @@ ngAriaModule.directive('ngShow', ['$aria', function($aria) {
           if ($aria.config('bindKeypress') && !attr.ngKeypress) {
             elem.on('keypress', function(event) {
               var keyCode = event.which || event.keyCode;
-              if (keyCode ==== 32 || keyCode ==== 13) {
+              if (keyCode === 32 || keyCode === 13) {
                 scope.$apply(callback);
               }
 
