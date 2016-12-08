@@ -199,7 +199,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\FoxSimController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InGenController.cs" />
@@ -216,7 +215,6 @@
     <Compile Include="Migrations\201604120655454_dateofbirth removed.Designer.cs">
       <DependentUpon>201604120655454_dateofbirth removed.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Comments.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DataValuesPopu.cs" />
@@ -355,6 +353,9 @@
     <Content Include="Scripts\AngularScripts\angular-touch.min.js" />
     <Content Include="Scripts\AngularScripts\angular.js" />
     <Content Include="Scripts\AngularScripts\angular.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\AngularScripts\angular-animate.min.js.map" />
     <Content Include="Scripts\AngularScripts\angular-aria.min.js.map" />
     <Content Include="Scripts\AngularScripts\angular-cookies.min.js.map" />
@@ -367,7 +368,6 @@
     <Content Include="Scripts\AngularScripts\angular-sanitize.min.js.map" />
     <Content Include="Scripts\AngularScripts\angular-touch.min.js.map" />
     <Content Include="Scripts\AngularScripts\angular.min.js.map" />
-    <Content Include="Scripts\angulike.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\Bootstrap\bootstrap.js" />
     <Content Include="Scripts\Bootstrap\bootstrap.min.js" />
@@ -1132,6 +1132,8 @@
     <Content Include="Scripts\jQuery\jquery.validate.js" />
     <Content Include="Scripts\jQuery\jquery.validate.min.js" />
     <Content Include="Scripts\JurassicVally\JurassicCore.js" />
+    <Content Include="Scripts\JurassicVally\Services\httpService.js" />
+    <Content Include="Scripts\JurassicVally\Services\JurassicService.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -1176,12 +1178,10 @@
     <Content Include="Views\FoxSim\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\About\About.cshtml" />
-    <Content Include="Views\Shared\Comments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="fonts\" />
     <Folder Include="obj\" />
-    <Folder Include="Views\Comments\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
