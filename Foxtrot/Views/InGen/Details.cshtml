@@ -1,0 +1,51 @@
+﻿@model Foxtrot.Models.Dinopedia
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Dinopedia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Characteristics_FK.Diet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Characteristics_FK.Diet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Species)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Species)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Period)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Period)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Shape)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Shape)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Return", "Dinopedia", "InGen")
+</p>
+<br />
+<br />

@@ -1,0 +1,166 @@
+﻿@model IEnumerable<Foxtrot.Models.Dinopedia>
+
+
+<div>
+    
+
+
+    @using (Html.BeginForm())
+    {
+        <b>Species Search:</b>
+        @Html.TextBox("SearchTerm", null, new { id = "textSearch" })
+
+        <input type="submit" value="Search" class="btn btn-primary"/>
+    }
+    <br />
+
+
+
+    <script type="text/javascript">
+        $(function () {
+            $("#textSearch").autocomplete({
+                source: '@Url.Action("GetDinos")'
+            });
+        });
+
+    </script>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Characteristics_FK.Diet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender_FK.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Species)
+            </th>
+            
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Period)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Characteristics_FK.Diet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender_FK.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Species)
+                </td>
+                
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Period)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</div>
+
+<br />
+<br />
+<br />
+
+<div >
+
+    <script>
+$(document).ready(function(){
+    $("#SelectHelpButton").click(function () {
+        $("#selectorHelp").toggle(1000);
+    });
+});
+    </script>
+
+    <script type="text/javascript">
+        //:input select just, input select all
+        $(document).ready(function()
+        {
+            $('input').each(function () {
+                $(this).val();
+            });
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        //button submit
+        $(document).ready(function()
+        {
+            $('#btnsubmit').click(function()
+            {
+                var result = $('input[type="radio"]:checked')
+                if(result.length>0)
+                {
+                    $('#divResult').html(result.val()+" is checked");
+                } else {
+                    $('#divResult').html("no radio button checked");
+                }
+            });
+            
+        });
+
+    </script>
+
+
+   
+
+    
+    <select class="btn btn-primary" id="selectLetterId">
+                      <!--  BCM   BHM BOM BCF BCF BHF BOF  ditto for Male      -->
+        <option selected="selected" value="">ACM</option>
+        <option selected="selected" value="">ACF</option>
+        <option selected="selected" value="">AHM</option>
+        <option selected="selected" value="">AHF</option>
+        <option selected="selected" value="">AOM</option>
+        <option selected="selected" value="">AOF</option>
+
+        <option selected="selected" value="">BCM</option>
+        <option selected="selected" value="">BCF</option>
+        <option selected="selected" value="">BHM</option>
+        <option selected="selected" value="">BHF</option>
+        <option selected="selected" value="">BOM</option>
+        <option selected="selected" value="">BOF</option>
+        
+    </select>
+
+    <input type="submit" value="Select" class="btn btn-primary" />
+
+</div>
+
+
+
+<div id="nav" align="left" class="col-md-2">
+
+    <input type="radio" name="gender value=Male" />Male
+    <input type="radio" name="gender" value="Female" />Female
+    <br /><br />
+    <input id="btnsubmit" type="submit" value="submit" />
+    <br /><br />
+    <div id="divResult"></div>
+
+</div>
+
+<div align="right" class="col-md-1">
+    <button id="SelectHelpButton" class="btn btn-info">Letter Id Helper</button>
+
+    <div id="selectorHelp" style="display:none;">
+        A = Hatchery A <br />
+        B = Hatchery B <br />
+        C = Carnivore <br />
+        H = Herbivore <br />
+        O = Omnivore <br />
+        M = Male <br />
+        F = Female <br />
+    </div>
+</div>

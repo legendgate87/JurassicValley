@@ -1,0 +1,169 @@
+﻿@model IEnumerable<Foxtrot.Models.Dinopedia>
+
+@{
+    ViewBag.Title = "Jurassic Vally";
+}
+
+
+<div ng-controller="dinoController">
+
+
+    @*<--------------------------Main logos------------------------------>*@
+    <div class="sample-show-hide" ng-show="((playerName === 'Player') || (GameNotRunning === true))">
+
+        <h1 id="center" class="jurassic topMargin">Jurassic Valley</h1>
+        <br />
+
+        @*<-------------------------XP bar------------------------------>*@
+        <p id="center" class="jurassic-xp">XP</p>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuemax="{{xpMax}}" style="width:{{percentXpbarC}}%">
+                {{xpBar}} / {{xpMax}}
+            </div>
+        </div>
+    </div>
+
+
+
+
+    @*<--------------------------Player & Opponent Names------------------------------>*@
+
+    <div id="column1" class="col-sm-1">
+        <p class="jurassic-small" id="playerName">{{dinList[playerName]}}</p>
+
+    </div>
+
+    <div id="column2" class="col-sm-1">
+        <p class="jurassic-small" id="opponent">{{opponent}}</p>
+    </div>
+
+
+
+
+    @*<--------------------------VS------------------------------>*@
+    <p id="center" class="jurassic-small">VS</p>
+    <hr />
+
+
+    @*<--------------------------NavBar------------------------------>*@
+    <nav class="navbar navbar-default" id="centerNavBar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div id="centerNavBarInner">
+
+
+                    <label class="jurassic-small2">Dinos defeated </label><label id="insetboxB">{{dinoDeathCount}}</label>
+
+                    <label class="jurassic-small2">Level</label> <label id="insetboxB">{{levelUp}}</label>
+
+                    <label id="centerNavbarText">Player Dino Select from list</label>
+
+                    <select id="centerNavButtons" ng-disabled="GameNotRunning === true" class="btn btn-primary"
+                            ng-options="idx as valName for (idx, valName) in dinList"
+                            ng-model="playerName" ng-change="toggle(dinList[playerName])">
+
+                        <option value="">Player</option>
+                    </select>
+                    <button id="centerButtonBattle" ng-disabled="((playerName === 'Player') || (GameNotRunning === true))" ng-click="runBattle()" type="button" class="btn btn-default">Battle</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    @*<--------------------------Player column------------------------------>*@
+
+    <div id="column1" class="col-sm-2  sample-show-hide" ng-hide="((playerName === 'Player') || (GameNotRunning === true))">
+        <div id="floatLeft">
+
+
+            <flip id="flipB" class="image-example {{side === 'front' ? 'flip-front' : 'flip-back'}}">
+                <flip-front>
+
+                    <img ng-src="{{imgSrc}}" onerror="this.src=''" class="imgFlip" />
+
+                </flip-front>
+                <flip-back>
+
+                    <img ng-src="{{imgSrcB}}" onerror="this.src=''" class="imgFlip" />
+                </flip-back>
+            </flip>
+            <p class="jurassic-small">{{dinoShapePlayer}}</p>
+            {{Buff}}
+            <hr />
+            <p class="jurassic-normal">PlayerHP </p>
+            <div class="progress">
+                <div class="progress-bar progress-bar-success" role="progressbar" style="width:{{percentXpbar}}%">
+                    {{playerHP}} / {{MaxHP}}
+                </div>
+            </div>
+            <hr />
+
+
+            <P class="jurassic-normal">PlayerDamage </P>
+            <div id="insetbox">
+                {{playerDamage}}
+            </div>
+
+            <br />
+        </div>
+    </div>
+
+
+    @*<-------------------------------achievement------------------------------------>*@
+    <div class="container-fluid achievement jurassic-small achi-show-hide" ng-show="GameNotRunning === true" ng-repeat="x in achievementsList">{{x}}</div>
+
+
+    @*<--------------------------Center Column------------------------------>*@
+    <div id="column3" class="container-fluid column3-show-hide col-sm-1" ng-show="GameNotRunning === true">
+
+        <p class="jurassic-xp">{{gameStatus}}</p>
+        <div>
+            <button type="button" class="btn btn-default jurassic-normal" ng-click="Keepgoing(); toggleOpponent()" ng-show="gameOpponentBool">Keep going?</button>
+            <button type="button" class="btn btn-default jurassic-normal" ng-click="Retry()" ng-show="gamePlayerBool">Try again?</button>
+        </div>
+        <div>
+        </div>
+    </div>
+    @*<div>
+            <button>stomp</button>
+            <button>scratch</button>
+            <button>bite</button>
+            <button>heal</button>
+        </div>*@
+
+
+    @*<--------------------------Opponent Column------------------------------>*@
+    <div id="column2" class="col-sm-2  sample-show-hide" ng-hide="((playerName === 'Player') || (GameNotRunning === true))">
+
+        <div id="floatRight">
+
+
+            <flip class="image-example {{side === 'front' ? 'flip-front' : 'flip-back'}}">
+                <flip-front>
+
+                    <img ng-src="{{imgSrc2}}" onerror="this.src=''" class="imgFlip" />
+                </flip-front>
+                <flip-back>
+
+                    <img ng-src="{{imgSrc2B}}" onerror="this.src=''" class="imgFlip" />
+                </flip-back>
+            </flip>
+
+            <p class="jurassic-small">{{dinoShapeOpponent}}</p>
+            <hr />
+            <p class="jurassic-normal">OpponentHP </p>
+            <div class="progress">
+                <div class="progress-bar progress-bar-success" role="progressbar" style="width:{{percentXpbarB}}%">
+                    {{opponentHP}} / {{MaxHP}}
+                </div>
+            </div>
+            <hr />
+            <P class="jurassic-normal">OpponentDamage </P>
+            <div id="insetbox">
+                {{opponentDamage}}
+            </div>
+            <br />
+        </div>
+    </div>
+</div>
