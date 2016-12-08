@@ -125,7 +125,11 @@ var buffIsActive;
 //-------------MainModule--------------
 var playerApp = angular.module('myModule', ['ngCookies', 'ngRoute', 'ngAnimate', 'angulike']);
 
-
+playerApp.run([
+      '$rootScope', function ($rootScope) {
+          $rootScope.facebookAppId = '[]'; // set your facebook app id here
+      }
+]);
 
 playerApp.controller('ComController', ['$scope', '$http',
   
@@ -133,34 +137,36 @@ playerApp.controller('ComController', ['$scope', '$http',
     function ($scope, $http) {
         //$scope.comment = [];
 
-   
+        $scope.myModel = {
+            Url: 'http://jasonwatmore.com/post/2014/08/01/AngularJS-directives-for-social-sharing-buttons-Facebook-Like-GooglePlus-Twitter-and-Pinterest.aspx',
+            Name: "JurassicValley",
+            ImageUrl: 'http://www.jasonwatmore.com/pics/jason.jpg'
+        };
     
     
         $scope.btn_add = function (val) {
 
-            if ($scope.Comment !== '') {
-
+            if ($scope.Comment != '') {
+                
                 var comentValue = { 'Comment': val };
                 $http.post("/Comments/CreateComment", comentValue).then(function (response) {
                     if (response.data === "Done!") {
                         $scope.Comment = "";
-                       
                     }
 
                 }, function (error) {
                     console.log(error);
                 });
                 $http.get('/Comments/GetComments').then(successCallBackComments);
-               
             }
-        };
+        }
 
         
         $http.get('/Comments/GetComments').then(
         successCallBackComments = function (response) {
             var remItem = response.data;
            
-            console.log(response.data);
+            
             $.each(remItem, function (index, value) {
                 comment.push(value.Comment);
             });
@@ -209,12 +215,12 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
 
 
         //----Get shape list from database------------------
-         successCallBack = function (response) {
+        var successCallBack = function (response) {
             //$log.info(response.data[0]);
 
             dinoShapePlayer = response.data[0];
 
-            if ($scope.side === "front") {
+            if ($scope.side == "front") {
                 imgSrc = "/Content/images/DinoPics/" + response.data[0] + ".png";
 
                 $scope.imgSrc = imgSrc;
@@ -236,7 +242,7 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
 
             dinoShapeOpponent = response.data[0];
 
-            if ($scope.side === "front") {
+            if ($scope.side == "front") {
                 imgSrc2 = "/Content/images/DinoPics/" + response.data[0] + ".png";
 
                 $scope.imgSrc2 = imgSrc2;
@@ -263,15 +269,15 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
             //$log.info(response.data[0]);
             dinoReturn = response.data[0];
             
-            if (dinoReturn === 1) {
+            if (dinoReturn == 1) {
                 carnivoreCount++;
 
             }
-            if (dinoReturn === 2) {
+            if (dinoReturn == 2) {
                 herbivoreCount++;
 
             }
-            if (dinoReturn === 3) {
+            if (dinoReturn == 3) {
                 omnivoreCount++;
             }
 
@@ -287,7 +293,7 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
         //------------------------FlipFunction---ANd---Cookie Save Load Name and load URL-------------------------------
         $scope.toggle = function (playerName) {
 
-            $scope.side = $scope.side === 'front' ? 'back' : 'front';
+            $scope.side = $scope.side == 'front' ? 'back' : 'front';
 
             // random dino for opponent            
             randDinoGet = dinList[Math.floor(Math.random() * dinList.length)];
@@ -302,13 +308,13 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
             var cookieGet = $cookies.get('playerCookie');
 
             var cookiePut2 = $cookies.put('opponentCookie', opponent);
-            cookieGet2 = $cookies.get('opponentCookie');
+             cookieGet2 = $cookies.get('opponentCookie');
 
             $http.get('/InGen/GetShapePlayer?playerName=' + cookieGet).then(successCallBack);
             $http.get('/InGen/GetShapeOpponent?opponent=' + cookieGet2).then(successCallBack2);
 
 
-        };
+        }
 
         //---get only opponent info---------------
         $scope.toggleOpponent = function () {
@@ -323,7 +329,7 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
             var cookieGet2 = $cookies.get('opponentCookie');
 
             $http.get('/InGen/GetShapeOpponent?opponent=' + cookieGet2).then(successCallBack2);
-        };
+        }
         //---------------------------------------------------------------
 
 
@@ -359,11 +365,11 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
 
        
 
-        $scope.percentXpbar = playerHealth / MaxHP * 100;
+        $scope.percentXpbar = ((playerHealth / MaxHP) * 100);
 
 
-        $scope.percentXpbarB = opponentHealth / MaxHP * 100;
-        $scope.percentXpbarC = xpBar / xpMax * 100;
+        $scope.percentXpbarB = (opponentHealth / MaxHP) * 100;
+        $scope.percentXpbarC = (xpBar / xpMax) * 100;
         
 
         $scope.gameStatus = gameStatus;
@@ -393,7 +399,7 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
             var cookieGet = $cookies.get('playerCookie');
 
             $http.get('/InGen/GetDietPlayer?playerName=' + cookieGet).then(successCallBack5);
-
+            
 
             xpMax = xpMaxArray[0];
             MaxHP = MaxHPArray[0];
@@ -402,7 +408,7 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
             opponentHealth = opponentHealthArray[0];
             playerHealth = playerHealthArray[0];
 
-
+            
             $scope.levelUp = levelUp;
 
             $scope.gameOpponentBool = false;
@@ -420,17 +426,17 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
             $scope.xpMax = xpMax;
             $scope.xpBar = xpBar;
 
-            $scope.percentXpbar =  playerHealth / MaxHP * 100;
-            $scope.percentXpbarB = opponentHealth / MaxHP * 100;
-            $scope.percentXpbarC = xpBar / xpMax * 100;
+            $scope.percentXpbar = (playerHealth / MaxHP) * 100
+            $scope.percentXpbarB = (opponentHealth / MaxHP) * 100;
+            $scope.percentXpbarC = (xpBar / xpMax) * 100;
 
 
 
-        };
+        }
 
         //----------Retry button--------------
         $scope.Retry = function () {
-
+           
             buffbuffIsActive = false;
             var cookieGet = $cookies.get('playerCookie');
 
@@ -439,15 +445,15 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
             popArrays();
             doCalculations();
 
-
-            if (dinoReturn === 1) {
+            
+            if (dinoReturn == 1) {
                 carnivoreCount++;
             }
-            if (dinoReturn === 2) {
+            if (dinoReturn == 2) {
                 herbivoreCount++;
 
             }
-            if (dinoReturn === 3) {
+            if (dinoReturn == 3) {
                 omnivoreCount++;
             }
 
@@ -476,10 +482,10 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
             $scope.xpMax = xpMax;
             $scope.xpBar = xpBar;
 
-            $scope.percentXpbar = playerHealth / MaxHP * 100;
-            $scope.percentXpbarB = opponentHealth / MaxHP * 100;
-            $scope.percentXpbarC = xpBar / xpMax * 100;
-        };
+            $scope.percentXpbar = ((playerHealth / MaxHP) * 100);
+            $scope.percentXpbarB = ((opponentHealth / MaxHP) * 100);
+            $scope.percentXpbarC = (xpBar / xpMax) * 100;
+        }
         
 
         //---------Battle button---------------
@@ -499,9 +505,9 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
 
             $scope.MaxHP = MaxHP;
 
-            $scope.percentXpbar =  playerHealth / MaxHP * 100;
-            $scope.percentXpbarB = opponentHealth / MaxHP * 100;
-            $scope.percentXpbarC = xpBar / xpMax * 100;
+            $scope.percentXpbar = ((playerHealth / MaxHP) * 100);
+            $scope.percentXpbarB = ((opponentHealth / MaxHP) * 100);
+            $scope.percentXpbarC = (xpBar / xpMax) * 100;
 
 
             //------Health--------------------------
@@ -519,8 +525,8 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
                 $scope.xpBar = xpBar;
             }
 
-
-
+            
+            
             //-------------------------------Opponent Wins-------------------------
             if (playerHealth <= 0) {
 
@@ -553,16 +559,16 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
 
 
                 //Opponent VINS, Game Over, Heal or Quit
-                $scope.gameStatus = "YOU LOST!";
+                $scope.gameStatus = "YOU LOST!"
 
 
                 $scope.xpBar = xpBar;
 
                 $scope.MaxHP = MaxHP;
 
-                $scope.percentXpbar = playerHealth / MaxHP * 100;
-                $scope.percentXpbarB = opponentHealth / MaxHP * 100;
-                $scope.percentXpbarC = xpBar / xpMax * 100;
+                $scope.percentXpbar = ((playerHealth / MaxHP) * 100);
+                $scope.percentXpbarB = ((opponentHealth / MaxHP) * 100);
+                $scope.percentXpbarC = (xpBar / xpMax) * 100;
 
                 $scope.gamePlayerBool = true;
 
@@ -570,10 +576,10 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
 
             }
 
-
+          
             //-------------------------------Player Wins-------------------------
             if (opponentHealth <= 0) {
-
+                
 
                 $scope.Buff = "";
                 buffIsActive = false;
@@ -584,7 +590,7 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
                 opponentStrength = opponentStrengthArray[0];
                 opponentAttackPower = opponentAttackPowerArray[0];
                 opponentDamageResistance = opponentDamageResistanceArray[0];
-
+                
 
                 xpMax = xpMaxArray[0];
                 MaxHP = MaxHPArray[0];
@@ -598,7 +604,7 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
                 $scope.dinoDeathCount = dinoDeathCount;
                 $scope.levelUp = levelUp;
 
-                $scope.gameStatus = "YOU WON!";
+                $scope.gameStatus = "YOU WON!"
 
                 //<---------xpLevelGain = levelUp^3/2--------->
                 xpLevelGain = Math.pow(levelUp, 3 / 2);
@@ -606,23 +612,23 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
 
                 xpBar + xpLevelGain;
 
-                xpBar = xpBar + Math.floorMath.random() * 30 + 2;
+                xpBar = xpBar + Math.floor((Math.random() * 30) + 2);
 
 
                 $scope.xpBar = xpBar;
 
                 $scope.MaxHP = MaxHP;
 
-                $scope.percentXpbar = playerHealth / MaxHP * 100;
-                $scope.percentXpbarB = opponentHealth / MaxHP * 100;
-                $scope.percentXpbarC = xpBar / xpMax * 100;
+                $scope.percentXpbar = ((playerHealth / MaxHP) * 100);
+                $scope.percentXpbarB = ((opponentHealth / MaxHP) * 100);
+                $scope.percentXpbarC = (xpBar / xpMax) * 100;
 
 
                 $scope.gameOpponentBool = true;
                 $scope.GameNotRunning = true;
                 //Save to database tbPlayer
 
-
+                
             }
 
 
@@ -645,7 +651,7 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
                 opponentAttackPower = opponentAttackPowerArray[0];
                 opponentDamageResistance = opponentDamageResistanceArray[0];
 
-
+                
                 xpMax = xpMaxArray[0];
                 MaxHP = MaxHPArray[0];
 
@@ -653,7 +659,7 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
                 opponentHealth = opponentHealthArray[0];
                 playerHealth = playerHealthArray[0];
 
-                $scope.gameStatus = "Level UP!";
+                $scope.gameStatus = "Level UP!"
 
                 xpBar = 0;
 
@@ -675,67 +681,67 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
             $scope.achievementsList = ["Achievements"];
 
             //---------Herbivore----------------------- 
-            if (herbivoreCount === 10) {
+            if (herbivoreCount == 10) {
                 $scope.achievementsList.push("Herbivore - Played as a plant eater ten times");
 
             }
-            if (herbivoreCount === 20) {
+            if (herbivoreCount == 20) {
                 $scope.achievementsList.push("Paleobotanist - Played as a plant eater twenty times");
 
             }
             //---------Carnivore-----------------------
-            if (carnivoreCount === 10) {
+            if (carnivoreCount == 10) {
                 $scope.achievementsList.push("Carnivorous - Played as a meat eater ten times");
 
             }
-            if (carnivoreCount === 20) {
+            if (carnivoreCount == 20) {
                 $scope.achievementsList.push("Top of the food chain - Played as a meat eater twenty times");
 
             }
             //---------Omnivore-----------------------
-            if (omnivoreCount === 10) {
+            if (omnivoreCount == 10) {
                 $scope.achievementsList.push("Omnivorous - Played as an all eater ten times");
 
             }
-            if (omnivoreCount === 20) {
+            if (omnivoreCount == 20) {
                 $scope.achievementsList.push("I'll eat anything - Played as an all eater twenty times");
 
             }
 
             //--------level---------------------------
-            if (levelUp === 50) {
+            if (levelUp == 50) {
                 $scope.achievementsList.push("level 50 - Dinosaur ruler");
             }
-            if (levelUp === 30) {
+            if (levelUp == 30) {
                 $scope.achievementsList.push("level 30 - Cretaceous Expert");
             }
-            if (levelUp === 20) {
+            if (levelUp == 20) {
                 $scope.achievementsList.push("level 20 - Out of this world");
             }
-            if (levelUp === 10) {
+            if (levelUp == 10) {
                 $scope.achievementsList.push("level 10 - Survivor");
             }
-            if (levelUp === 5) {
+            if (levelUp == 5) {
                 $scope.achievementsList.push("level 5 - Clever girl");
             }
 
             //------------DeathCount-----------------------------
-            if (dinoDeathCount === 1) {
+            if (dinoDeathCount == 1) {
                 $scope.achievementsList.push("Kill count 1 - it's the thought that counts");
             }
-            if (dinoDeathCount === 5) {
+            if (dinoDeathCount == 5) {
                 $scope.achievementsList.push("Kill count 5 - So, who's hungry?");
             }
-            if (dinoDeathCount === 10) {
+            if (dinoDeathCount == 10) {
                 $scope.achievementsList.push("Kill count 10 - Killer");
             }
-            if (dinoDeathCount === 50) {
+            if (dinoDeathCount == 50) {
                 $scope.achievementsList.push("Kill count 50 - Slaughterhouse");
             }
-            if (dinoDeathCount === 100) {
+            if (dinoDeathCount == 100) {
                 $scope.achievementsList.push("Kill count 100 - Predator");
             }
-            if (dinoDeathCount === 200) {
+            if (dinoDeathCount == 200) {
                 $scope.achievementsList.push("Kill count 200 - Well that exalted quickly");
             }
 
@@ -749,211 +755,211 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
 
 
             // elements ?
-            var randNumb = Math.floorMath.random() * 5 + 1;
+            var randNumb = Math.floor((Math.random() * 5) + 1);
             var roll2 = 0;
             roll2 = dice[Math.floor(Math.random() * 10)];
+            
+
+            if(buffIsActive == false){
+
+            if (roll2 <= 5) {
+
+                //  player strong against
+                if ((dinoShapePlayer == "sauropod" && dinoShapeOpponent == "ornithomimosaur") || (dinoShapePlayer == "sauropod" && dinoShapeOpponent == "ceratopian")) {
+                    // add to strength+1
+                    //add to health+5
+                    
+                    var pre = playerStrengthArray[0];
+
+                    playerStrengthArray.pop();
+                    setPlayerstrength = pre + randNumb;
+                    playerStrengthArray.push(setPlayerstrength);
 
 
-            if (buffIsActive === false) {
+                    $scope.Buff = "Str+" + setPlayerstrength;
+                    buffIsActive = true;
 
-                if (roll2 <= 5) {
+                    //  player weak against
+                } if (dinoShapePlayer == "sauropod" && dinoShapeOpponent == "ankylosaurid") {
+                    //debuff
+                    var pre = playerStrengthArray[0];
 
-                    //  player strong against
-                    if ((dinoShapePlayer === "sauropod" && dinoShapeOpponent === "ornithomimosaur") || (dinoShapePlayer === "sauropod" && dinoShapeOpponent === "ceratopian")) {
-                        // add to strength+1
-                        //add to health+5
-
-                        var pre = playerStrengthArray[0];
-
-                        playerStrengthArray.pop();
-                        setPlayerstrength = pre + randNumb;
-                        playerStrengthArray.push(setPlayerstrength);
+                    playerStrengthArray.pop();
+                    setPlayerstrength = pre - randNumb;
+                    playerStrengthArray.push(setPlayerstrength);
 
 
-                        $scope.Buff = "Str+" + setPlayerstrength;
-                        buffIsActive = true;
-
-                        //  player weak against
-                    } if (dinoShapePlayer === "sauropod" && dinoShapeOpponent === "ankylosaurid") {
-                        //debuff
-                         pre = playerStrengthArray[0];
-
-                        playerStrengthArray.pop();
-                        setPlayerstrength = pre - randNumb;
-                        playerStrengthArray.push(setPlayerstrength);
-
-
-                        $scope.Buff = "Str-" + setPlayerstrength;
-                        buffIsActive = true;
-
-                    }
-                    if (dinoShapePlayer === "ankylosaurid" && dinoShapeOpponent === "sauropod") {
-                        //add to damageResistance+4 
-
-                         pre = playerDamageResistanceArray[0];
-
-                        playerDamageResistanceArray.pop();
-                        setPlayerDamageResistance = pre + randNumb;
-                        playerDamageResistanceArray.push(setPlayerDamageResistance);
-
-
-                        $scope.Buff = "Res+" + setPlayerDamageResistance;
-                        buffIsActive = true;
-
-                    } if ((dinoShapePlayer === "ankylosaurid" && dinoShapeOpponent === "largetheropod") || (dinoShapePlayer === "ankylosaurid" && dinoShapeOpponent === "smalltheropod")) {
-                        //debuff
-                         pre = playerDamageResistanceArray[0];
-
-                        playerDamageResistanceArray.pop();
-                        setPlayerDamageResistance = pre - randNumb;
-                        playerDamageResistanceArray.push(setPlayerDamageResistance);
-
-
-                        $scope.Buff = "Res-" + setPlayerDamageResistance;
-                        buffIsActive = true;
-
-                    }
-                    if (dinoShapePlayer === "ceratopian" && dinoShapeOpponent === "euornithopod") {
-                        //add to attackPower+2 
-                         pre = playerAttackPowerArray[0];
-
-                        playerAttackPowerArray.pop();
-                        setPlayerAttackPower = pre + randNumb;
-                        playerAttackPowerArray.push(setPlayerAttackPower);
-
-                        $scope.Buff = "Att+" + setPlayerAttackPower;
-                        buffIsActive = true;
-
-                    } if (dinoShapePlayer === "ceratopian" && dinoShapeOpponent === "sauropod") {
-
-                        //debuff
-                         pre = playerAttackPowerArray[0];
-
-                        playerAttackPowerArray.pop();
-                        setPlayerAttackPower = pre - randNumb;
-                        playerAttackPowerArray.push(setPlayerAttackPower);
-
-                        $scope.Buff = "Att-" - setPlayerAttackPower;
-                        buffIsActive = true;
-
-                    }
-                    if ((dinoShapePlayer === "euornithopod" && dinoShapeOpponent === "largetheropod") || (dinoShapePlayer === "euornithopod" && dinoShapeOpponent === "smalltheropod")) {
-
-                         pre = playerDamageResistanceArray[0];
-
-                        playerDamageResistanceArray.pop();
-                        setPlayerDamageResistance = pre + randNumb;
-                        playerDamageResistanceArray.push(setPlayerDamageResistance);
-
-                        $scope.Buff = "Res+" + setPlayerDamageResistance;
-                        buffIsActive = true;
-
-                    } if ((dinoShapePlayer === "euornithopod" && dinoShapeOpponent === "ornithomimosaur") || (dinoShapePlayer === "euornithopod" && dinoShapeOpponent === "ceratopian")) {
-                         pre = playerDamageResistanceArray[0];
-
-                        playerDamageResistanceArray.pop();
-                        setPlayerDamageResistance = pre - randNumb;
-                        playerDamageResistanceArray.push(setPlayerDamageResistance);
-
-                        $scope.Buff = "Res-" - setPlayerDamageResistance;
-                        buffIsActive = true;
-                        //debuff
-
-                    }
-                    if (dinoShapePlayer === "ornithomimosaur" && dinoShapeOpponent === "euornithopod") {
-                        // add to damageResistance+1
-
-                         pre = playerDamageResistanceArray[0];
-
-                        playerDamageResistanceArray.pop();
-                        setPlayerDamageResistance = pre + randNumb;//randNumb
-                        playerDamageResistanceArray.push(setPlayerDamageResistance);
-
-                        $scope.Buff = "Res+" + setPlayerDamageResistance;
-                        buffIsActive = true;
-
-                    } if (dinoShapePlayer === "ornithomimosaur" && dinoShapeOpponent === "sauropod") {
-                        //debuff
-                         pre = playerDamageResistanceArray[0];
-
-                        playerDamageResistanceArray.pop();
-                        setPlayerDamageResistance = pre - randNumb;
-                        playerDamageResistanceArray.push(setPlayerDamageResistance);
-
-                        $scope.Buff = "Res-" + setPlayerDamageResistance;
-                        buffIsActive = true;
-
-                    }
-                    if (dinoShapePlayer === "largetheropod" && dinoShapeOpponent === "ankylosaurid") {
-                        // add to strength+4
-                        // add to attackPower+3
-                        pre = playerStrengthArray[0];
-
-                        playerStrengthArray.pop();
-                        setPlayerstrength = pre + randNumb;
-                        playerStrengthArray.push(setPlayerstrength);
-
-                         pre = playerAttackPowerArray[0];
-
-                        playerAttackPowerArray.pop();
-                        setPlayerAttackPower = pre + randNumb;
-                        playerAttackPowerArray.push(setPlayerAttackPower);
-
-
-                        $scope.Buff = "Str+" + setPlayerstrength + "Att+" + setPlayerAttackPower;
-                        buffIsActive = true;
-
-                    } if (dinoShapePlayer === "largetheropod" && dinoShapeOpponent === "euornithopod") {
-                        //debuff
-
-                         pre = playerStrengthArray[0];
-
-                        playerStrengthArray.pop();
-                        setPlayerstrength = pre - randNumb;
-                        playerStrengthArray.push(setPlayerstrength);
-
-                         pre = playerAttackPowerArray[0];
-
-                        playerAttackPowerArray.pop();
-                        setPlayerAttackPower = pre - randNumb;
-                        playerAttackPowerArray.push(setPlayerAttackPower);
-
-
-                        $scope.Buff = "Str-" + setPlayerstrength + "Att-" + setPlayerAttackPower;
-                        buffIsActive = true;
-                    }
-                    if (dinoShapePlayer === "smalltheropod" && dinoShapeOpponent === "ankylosaurid") {
-                        // add to attackPower+3
-
-                         pre = playerAttackPowerArray[0];
-
-                        playerAttackPowerArray.pop();
-                        setPlayerAttackPower = pre + randNumb;
-                        playerAttackPowerArray.push(setPlayerAttackPower);
-
-                        $scope.Buff = "Att+" + setPlayerAttackPower;
-
-                    } if (dinoShapePlayer === "smalltheropod" && dinoShapeOpponent === "euornithopod") {
-                        //debuff
-
-                         pre = playerAttackPowerArray[0];
-
-                        playerAttackPowerArray.pop();
-                        setPlayerAttackPower = pre - randNumb;
-                        playerAttackPowerArray.push(setPlayerAttackPower);
-
-                        $scope.Buff = "Att-" + setPlayerAttackPower;
-                        buffIsActive = true;
-
-                    }
+                    $scope.Buff = "Str-" + setPlayerstrength;
+                    buffIsActive = true;
 
                 }
+                if (dinoShapePlayer == "ankylosaurid" && dinoShapeOpponent == "sauropod") {
+                    //add to damageResistance+4 
+
+                    var pre = playerDamageResistanceArray[0];
+
+                    playerDamageResistanceArray.pop();
+                    setPlayerDamageResistance = pre + randNumb;
+                    playerDamageResistanceArray.push(setPlayerDamageResistance);
+
+
+                    $scope.Buff = "Res+" + setPlayerDamageResistance;
+                    buffIsActive = true;
+
+                } if ((dinoShapePlayer == "ankylosaurid" && dinoShapeOpponent == "largetheropod") || (dinoShapePlayer == "ankylosaurid" && dinoShapeOpponent == "smalltheropod")) {
+                    //debuff
+                    var pre = playerDamageResistanceArray[0];
+
+                    playerDamageResistanceArray.pop();
+                    setPlayerDamageResistance = pre - randNumb;
+                    playerDamageResistanceArray.push(setPlayerDamageResistance);
+
+
+                    $scope.Buff = "Res-" + setPlayerDamageResistance;
+                    buffIsActive = true;
+
+                }
+                if (dinoShapePlayer == "ceratopian" && dinoShapeOpponent == "euornithopod") {
+                    //add to attackPower+2 
+                    var pre = playerAttackPowerArray[0];
+
+                    playerAttackPowerArray.pop();
+                    setPlayerAttackPower = pre + randNumb;
+                    playerAttackPowerArray.push(setPlayerAttackPower);
+
+                    $scope.Buff = "Att+" + setPlayerAttackPower;
+                    buffIsActive = true;
+
+                } if (dinoShapePlayer == "ceratopian" && dinoShapeOpponent == "sauropod") {
+
+                    //debuff
+                    var pre = playerAttackPowerArray[0];
+
+                    playerAttackPowerArray.pop();
+                    setPlayerAttackPower = pre - randNumb;
+                    playerAttackPowerArray.push(setPlayerAttackPower);
+
+                    $scope.Buff = "Att-" - setPlayerAttackPower;
+                    buffIsActive = true;
+
+                }
+                if ((dinoShapePlayer == "euornithopod" && dinoShapeOpponent == "largetheropod") || (dinoShapePlayer == "euornithopod" && dinoShapeOpponent == "smalltheropod")) {
+
+                    var pre = playerDamageResistanceArray[0];
+
+                    playerDamageResistanceArray.pop();
+                    setPlayerDamageResistance = pre + randNumb;
+                    playerDamageResistanceArray.push(setPlayerDamageResistance);
+
+                    $scope.Buff = "Res+" + setPlayerDamageResistance;
+                    buffIsActive = true;
+
+                } if ((dinoShapePlayer == "euornithopod" && dinoShapeOpponent == "ornithomimosaur") || (dinoShapePlayer == "euornithopod" && dinoShapeOpponent == "ceratopian")) {
+                    var pre = playerDamageResistanceArray[0];
+
+                    playerDamageResistanceArray.pop();
+                    setPlayerDamageResistance = pre - randNumb;
+                    playerDamageResistanceArray.push(setPlayerDamageResistance);
+
+                    $scope.Buff = "Res-" - setPlayerDamageResistance;
+                    buffIsActive = true;
+                    //debuff
+
+                }
+                if (dinoShapePlayer == "ornithomimosaur" && dinoShapeOpponent == "euornithopod") {
+                    // add to damageResistance+1
+
+                    var pre = playerDamageResistanceArray[0];
+
+                    playerDamageResistanceArray.pop();
+                    setPlayerDamageResistance = pre + randNumb;//randNumb
+                    playerDamageResistanceArray.push(setPlayerDamageResistance);
+
+                    $scope.Buff = "Res+" + setPlayerDamageResistance;
+                    buffIsActive = true;
+
+                } if (dinoShapePlayer == "ornithomimosaur" && dinoShapeOpponent == "sauropod") {
+                    //debuff
+                    var pre = playerDamageResistanceArray[0];
+
+                    playerDamageResistanceArray.pop();
+                    setPlayerDamageResistance = pre - randNumb;
+                    playerDamageResistanceArray.push(setPlayerDamageResistance);
+
+                    $scope.Buff = "Res-" + setPlayerDamageResistance;
+                    buffIsActive = true;
+
+                }
+                if (dinoShapePlayer == "largetheropod" && dinoShapeOpponent == "ankylosaurid") {
+                    // add to strength+4
+                    // add to attackPower+3
+                    var pre = playerStrengthArray[0];
+
+                    playerStrengthArray.pop();
+                    setPlayerstrength = pre + randNumb;
+                    playerStrengthArray.push(setPlayerstrength);
+
+                    var pre = playerAttackPowerArray[0];
+
+                    playerAttackPowerArray.pop();
+                    setPlayerAttackPower = pre + randNumb;
+                    playerAttackPowerArray.push(setPlayerAttackPower);
+
+
+                    $scope.Buff = "Str+" + setPlayerstrength + "Att+" + setPlayerAttackPower;
+                    buffIsActive = true;
+
+                } if (dinoShapePlayer == "largetheropod" && dinoShapeOpponent == "euornithopod") {
+                    //debuff
+                   
+                    var pre = playerStrengthArray[0];
+
+                    playerStrengthArray.pop();
+                    setPlayerstrength = pre - randNumb;
+                    playerStrengthArray.push(setPlayerstrength);
+
+                    var pre = playerAttackPowerArray[0];
+
+                    playerAttackPowerArray.pop();
+                    setPlayerAttackPower = pre - randNumb;
+                    playerAttackPowerArray.push(setPlayerAttackPower);
+
+
+                    $scope.Buff = "Str-" + setPlayerstrength + "Att-" + setPlayerAttackPower;
+                    buffIsActive = true;
+                }
+                if (dinoShapePlayer == "smalltheropod" && dinoShapeOpponent == "ankylosaurid") {
+                    // add to attackPower+3
+
+                    var pre = playerAttackPowerArray[0];
+
+                    playerAttackPowerArray.pop();
+                    setPlayerAttackPower = pre + randNumb;
+                    playerAttackPowerArray.push(setPlayerAttackPower);
+
+                    $scope.Buff = "Att+" + setPlayerAttackPower;
+
+                } if (dinoShapePlayer == "smalltheropod" && dinoShapeOpponent == "euornithopod") {
+                    //debuff
+
+                    var pre = playerAttackPowerArray[0];
+
+                    playerAttackPowerArray.pop();
+                    setPlayerAttackPower = pre - randNumb;
+                    playerAttackPowerArray.push(setPlayerAttackPower);
+
+                    $scope.Buff = "Att-" + setPlayerAttackPower;
+                    buffIsActive = true;
+
+                }
+
+            }
             }
 
+            
+            
 
-
-
-        };
+        }
 
         //------------empty all arrays------------
         function popArrays() {
@@ -1083,7 +1089,7 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
             //-------------------------------Final calculation and return---------------------------------------------
             opponentHealth = opponentHealth - playerDamageResult;
             
-            return { opponentHealth, playerDamageResult };
+            return { opponentHealth, playerDamageResult }
 
         }
 
@@ -1109,7 +1115,7 @@ playerApp.controller('dinoController', ['$scope', '$http', '$log', '$cookies', '
             //-----------------------------------------------------
 
 
-            return { playerHealth, opponentDamageResult };
+            return { playerHealth, opponentDamageResult }
 
         }
 
